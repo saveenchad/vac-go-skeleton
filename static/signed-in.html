@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>VAC-GO</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link href="./css/materialize.min.css" rel="stylesheet" />
+    <link href="./css/app.css" rel="stylesheet" />
+
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/materialize.min.js"></script>
+    <script src="./js/app.js"></script>
+  </head>
+  <body>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper blue">
+          <span class="brand-logo center">VAC-Go!</span>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="./index.html">Logout</a></li>
+          </ul>
+          <ul class="left hide-on-med-and-down">
+            <li class="vac-go-welcome">Welcome, <b>user.name1</b>!</li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="vac-go-body">
+      <blockquote class="blue-text">Today</blockquote>
+      <div class="vac-go-posts">
+        <ul class="collapsible popout" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons tooltipped" data-position="left" data-tooltip="Fall">nature_people</i>
+              <span class="badge">57</span>
+              <span class="new badge" data-badge-caption="CSE 12"></span>
+              <span class="new badge" data-badge-caption="CSE 15L"></span>
+              <span class="new badge" data-badge-caption="CSE 20"></span>
+              <span class="btn-flat btn-small waves-effect waves-purple downvote right">
+                <i class="material-icons">arrow_downward</i>
+              </span>
+              <span class="btn-flat btn-small waves-effect waves-orange upvote right">
+                <i class="material-icons">arrow_upward</i>
+              </span>
+              <form action="#" class="right">
+                <input type="checkbox" id="sel" />
+                <label for="sel"></label>
+              </form>
+            </div>
+            <div class="collapsible-body">
+              <p><span class="vac-go-post-author">user.name1 - </span>This is the body of the post
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons tooltipped" data-position="left" data-tooltip="Winter">ac_unit</i>
+              <span class="badge">16</span>
+              <span class="new badge" data-badge-caption="CSE 8A"></span>
+              <span class="new badge" data-badge-caption="COGS 120"></span>
+              <span class="new badge" data-badge-caption="ANTH 23"></span>
+              <a class="btn-flat btn-small waves-effect waves-purple downvote right">
+                <i class="material-icons">arrow_downward</i>
+              </a>
+              <a class="btn-flat btn-small waves-effect waves-orange upvote right">
+                <i class="material-icons">arrow_upward</i>
+              </a>
+            </div>
+            <div class="collapsible-body">
+              <p><span class="vac-go-post-author">user.name2 - </span>This is the body of the post
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons tooltipped" data-position="left" data-tooltip="Spring">local_florist</i>
+              <span class="badge">08</span>
+              <span class="new badge" data-badge-caption="CSE 30"></span>
+              <span class="new badge" data-badge-caption="CSE 140"></span>
+              <span class="new badge" data-badge-caption="CSE 140L"></span>
+              <span class="new badge" data-badge-caption="CSE 198"></span>
+              <a class="btn-flat btn-small waves-effect waves-purple downvote right">
+                <i class="material-icons">arrow_downward</i>
+              </a>
+              <a class="btn-flat btn-small waves-effect waves-orange upvote right">
+                <i class="material-icons">arrow_upward</i>
+              </a>
+            </div>
+            <div class="collapsible-body">
+              <p><span class="vac-go-post-author">user.name2 - </span>This is the body of the post
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons tooltipped" data-position="left" data-tooltip="Summer">wb_sunny</i>
+              <span class="badge">23</span>
+              <span class="new badge" data-badge-caption="COMM 10"></span>
+              <span class="new badge" data-badge-caption="MAE 181"></span>
+              <span class="new badge" data-badge-caption="CSE 21"></span>
+              <span class="new badge light-blue" data-badge-caption="work (+5)"></span>
+              <a class="btn-flat btn-small waves-effect waves-purple downvote right">
+                <i class="material-icons">arrow_downward</i>
+              </a>
+              <a class="btn-flat btn-small waves-effect waves-orange upvote right">
+                <i class="material-icons">arrow_upward</i>
+              </a>
+            </div>
+            <div class="collapsible-body">
+              <p><span class="vac-go-post-author">user.name5 - </span>This is the body of the post
+            </div>
+          </li>
+        </ul>
+      </div>
+      <blockquote class="blue-text">Past</blockquote>
+      <div class="vac-go-posts">
+        <ul class="collapsible popout" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons tooltipped" data-position="left" data-tooltip="Winter">ac_unit</i>
+              <span class="badge">14</span>
+              <span class="new badge" data-badge-caption="CSE 131"></span>
+              <span class="new badge" data-badge-caption="CSE 103"></span>
+              <span class="new badge" data-badge-caption="COGS 187A"></span>
+              <span class="new badge red lighten-1" data-badge-caption="soccer (+3)"></span>
+              <a class="btn-flat btn-small waves-effect waves-purple downvote right">
+                <i class="material-icons">arrow_downward</i>
+              </a>
+              <a class="btn-flat btn-small waves-effect waves-orange upvote right">
+                <i class="material-icons">arrow_upward</i>
+              </a>
+            </div>
+            <div class="collapsible-body">
+              <p><span class="vac-go-post-author">user.name2 - </span>This is the body of the post
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons tooltipped" data-position="left" data-tooltip="Fall">nature_people</i>
+              <span class="badge">09</span>
+              <span class="new badge" data-badge-caption="CSE 123"></span>
+              <span class="new badge" data-badge-caption="CSE 131"></span>
+              <span class="new badge" data-badge-caption="CSE 132A"></span>
+              <span class="new badge" data-badge-caption="CSE 170"></span>
+              <a class="btn-flat btn-small waves-effect waves-purple downvote right">
+                <i class="material-icons">arrow_downward</i>
+              </a>
+              <a class="btn-flat btn-small waves-effect waves-orange upvote right">
+                <i class="material-icons">arrow_upward</i>
+              </a>
+            </div>
+            <div class="collapsible-body">
+              <p><span class="vac-go-post-author">user.name4 - </span>This is the body of the post
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons tooltipped" data-position="left" data-tooltip="Winter">ac_unit</i>
+              <span class="badge">02</span>
+              <span class="new badge" data-badge-caption="CSE 100"></span>
+              <span class="new badge" data-badge-caption="CSE 103"></span>
+              <span class="new badge" data-badge-caption="CSE 141"></span>
+              <span class="new badge" data-badge-caption="CSE 197"></span>
+              <span class="new badge" data-badge-caption="POLI 113A"></span>
+              <a class="btn-flat btn-small waves-effect waves-purple downvote right">
+                <i class="material-icons">arrow_downward</i>
+              </a>
+              <a class="btn-flat btn-small waves-effect waves-orange upvote right">
+                <i class="material-icons">arrow_upward</i>
+              </a>
+            </div>
+            <div class="collapsible-body">
+              <p><span class="vac-go-post-author">user.name5 - </span>This is the body of the post
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons tooltipped" data-position="left" data-tooltip="Spring">local_florist</i>
+              <span class="badge">11</span>
+              <span class="new badge" data-badge-caption="CSE 132A"></span>
+              <span class="new badge" data-badge-caption="CSE 151"></span>
+              <span class="new badge" data-badge-caption="TDMV 142"></span>
+              <span class="new badge red lighten-1" data-badge-caption="Doctors Without Borders (+2)"></span>
+              <a class="btn-flat btn-small waves-effect waves-purple downvote right">
+                <i class="material-icons">arrow_downward</i>
+              </a>
+              <a class="btn-flat btn-small waves-effect waves-orange upvote right">
+                <i class="material-icons">arrow_upward</i>
+              </a>
+            </div>
+            <div class="collapsible-body">
+              <p><span class="vac-go-post-author">user.name3 - </span>This is the body of the post
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons tooltipped" data-position="left" data-tooltip="Summer">wb_sunny</i>
+              <span class="badge">17</span>
+              <span class="new badge" data-badge-caption="CSE 136"></span>
+              <span class="new badge" data-badge-caption="COGS 187A"></span>
+              <span class="new badge light-blue" data-badge-caption="Work (+10)"></span>
+              <a class="btn-flat btn-small waves-effect waves-purple downvote right">
+                <i class="material-icons">arrow_downward</i>
+              </a>
+              <a class="btn-flat btn-small waves-effect waves-orange upvote right">
+                <i class="material-icons">arrow_upward</i>
+              </a>
+            </div>
+            <div class="collapsible-body">
+              <p><span class="vac-go-post-author">user.name3 - </span>This is the body of the post
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons tooltipped left" data-position="left" data-tooltip="Spring">local_florist</i>
+              <span class="badge">05</span>
+              <span class="new badge" data-badge-caption="CSE 20"></span>
+              <span class="new badge" data-badge-caption="CSE 105"></span>
+              <span class="new badge" data-badge-caption="CSE 110"></span>
+              <span class="new badge" data-badge-caption="CSE 140L"></span>
+              <a class="btn-flat btn-small waves-effect waves-purple downvote right">
+                <i class="material-icons">arrow_downward</i>
+              </a>
+              <a class="btn-flat btn-small waves-effect waves-orange upvote right">
+                <i class="material-icons">arrow_upward</i>
+              </a>
+            </div>
+            <div class="collapsible-body">
+              <p><span class="vac-go-post-author">user.name2 - </span>This is the body of the post
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div id="add-post-modal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+          <h4>New Post</h4>
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s3">
+                <i class="material-icons prefix">import_contacts</i>
+                <select>
+                  <option value="" disabled selected>Dept.</option>
+                  <option value="ANTH">ANTH</option>
+                  <option value="CSE">CSE</option>
+                  <option value="COGS">COGS</option>
+                  <option value="COMM">COMM</option>
+                  <option value="MAE">MAE</option>
+                </select>
+              </div>
+              <div class="input-field col s9">
+                <select>
+                  <option value="" disabled selected>Course</option>
+                  <option value="100">100 - Intro</option>
+                  <option value="101">101 - Advanced Intro</option>
+                  <option value="200">200 - Grad Intro</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">directions_bike</i>
+                <input id="activity" type="text" />
+                <label for="activity">Activity Name</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">schedule</i>
+                <input id="hours-busy" type="number" min="0" class="validate" />
+                <label for="hours-busy">Hours Busy</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">mode_edit</i>
+                <textarea id="post-body" class="materialize-textarea"></textarea>
+                <label for="post-body">Post Body</label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Post</a>
+          <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+          <a href="#!" class="modal-action modal-close waves-effect waves-teal btn-flat">Add Course</a>
+          <a href="#!" class="modal-action modal-close waves-effect waves-teal btn-flat">Add Activity</a>
+        </div>
+      </div>
+
+      <ul class="pagination center">
+        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active"><a href="#!">1</a></li>
+        <li class="waves-effect"><a href="#!">2</a></li>
+        <li class="waves-effect"><a href="#!">3</a></li>
+        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+      </ul>
+
+      <div class="fixed-action-btn vertical" style="bottom: 45px; right: 24px;">
+        <a href="#!" class="btn-floating btn-large blue waves-effect waves-light">
+          <i class="material-icons">menu</i>
+        </a>
+        <ul>
+          <li>
+            <a id="send" class="btn-floating green lighten-1 tooltipped" data-position="left" data-tooltip="Send to Counselor">
+              <i class="material-icons">send</i>
+            </a>
+          </li>
+          <li>
+            <a href="#add-post-modal" class="btn-floating red lighten-1 modal-trigger tooltipped" data-position="left" data-tooltip="Add a New Post">
+              <i class="material-icons">add</i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
