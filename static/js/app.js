@@ -16,6 +16,16 @@ $(document).ready(function(){
     e.stopPropagation();
   });
 
+  $(".comment-reply").click(function(e) {
+    var newComment = $(this).prev().val();
+    if(newComment.length === 0) return;
+
+    var comments = $(this).parent().parent().parent().prev();
+
+    comments.append("<blockquote><span class='vac-go-comment-author'>user.name1</span>: " + newComment + "</blockquote>");
+    $(this).prev().val("");
+  });
+
   $("#send").click(function(e) {
     if($("#sel:checked").length) {
       Materialize.toast('Course plan sent to counselors!', 4000);

@@ -71,7 +71,16 @@ span.badge[data-badge-caption] {
   padding: 1rem;
 }
 
-.vac-go-post-author {
+.vac-go-comments blockquote {
+  margin-left: 50px;
+  border-color: #2196F3;
+}
+
+.vac-go-reply {
+  width: 85% !important;
+}
+
+.vac-go-post-author, .vac-go-comment-author {
   font-weight: bold;
 }
 
