@@ -1,5 +1,5 @@
 // Get all of our friend data
-var posts  = require('../posts.json');
+var posts  = require('../data.json');
 var majors = require('../majors.json');
 
 exports.add = function(req, res) {
@@ -15,5 +15,5 @@ exports.login = function(req, res) {
 };
 
 exports.view = function(req, res) {
-	res.render('index', {posts: posts.posts});
+	res.render('login', {posts: posts.posts});
 };
