@@ -1,31 +1,63 @@
-/**
- * Introduction to Human-Computer Interaction
- * Lab 2
- * --------------
- * Created by: Michael Bernstein
- * Last updated: December 2013
- */
 var PORT = 3000;
 
-// Express is a web framework for node.js
-// that makes nontrivial applications easier to build
-var express = require('express');
+var express    = require('express');
+var http       = require('http');
+var path       = require('path');
+var handlebars = require('express-handlebars');
+var firebase   = require('firebase');
 
-// Create the server instance
-var app = express();
+var index      = require('./routes/index.js');
 
-// Print logs to the console and compress pages we send
-app.use(express.logger());
-app.use(express.compress());
+var app        = express();
 
-// Return all pages in the /static directory
-// whenever they are requested at '/'
-// e.g., http://localhost:3000/index.html
-// maps to /static/index.html on this machine
-app.use(express.static(__dirname + '/static'));
+app.set('port', process.env.PORT || PORT);
+app.set('views', path.join(__dirname, 'views'));
+app.engine('handlebars', handlebars({
+  helpers: {
+    if_eq: function(a, b, opts) {
+      if(a === b) {
+        return opts.fn(this);
+      } else {
+        return opts.inverse(this);
+      }
+    },
+    toJSON: function(obj) {
+      return JSON.stringify(obj);
+    }
+  }
+}));
+app.set('view engine', 'handlebars');
+app.use(express.favicon());
+app.use(express.logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.methodOverride());
+app.use(express.cookieParser('VAC-Go secret key!'));
+app.use(express.session());
+app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Start the server
-var port = process.env.PORT || PORT; // 80 for web, 3000 for development
-app.listen(port, function() {
-	console.log("Node.js server running on port %s", port);
+// development only
+if ('development' == app.get('env')) {
+  app.use(express.errorHandler());
+}
+
+/** ROUTES **/
+app.get('/', index.view);
+app.get('/add', index.add);
+app.get('/getMajorsFile', index.getMajorsFile);
+app.get('/signed-in', index.login);
+
+/** START SERVER **/
+http.createServer(app).listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + app.get('port'));
 });
+
+/** FIREBASE CONFIG **/
+// var fbConfig = {
+//   apiKey: "AIzaSyDmJrCjmCLEj3hpD8ITh1rg1UAtrKl3UbY",
+//   authDomain: "vac-go.firebaseapp.com",
+//   databaseURL: "https://vac-go.firebaseio.com",
+//   storageBucket: "vac-go.appspot.com",
+// };
+// firebase.initializeApp(fbConfig);

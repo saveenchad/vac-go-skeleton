@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>VAC-GO</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link href="./css/materialize.min.css" rel="stylesheet" />
+    <link href="./css/app.css" rel="stylesheet" />
+
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/materialize.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/signed-in.js"></script>
+  </head>
+  <body>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper blue">
+          <span class="brand-logo center">VAC-Go!</span>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="./">Logout</a></li>
+          </ul>
+          <ul class="left hide-on-med-and-down">
+            <li class="vac-go-welcome">Welcome, <b>user.name1</b>!</li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="vac-go-body">
+      <blockquote class="blue-text">Today</blockquote>
+      <div class="vac-go-posts">
+        <ul class="collapsible popout" data-collapsible="accordion">
+          {{#each posts}}
+            {{#if this.date}}
+              <li class="post">
+                <div class="collapsible-header">
+                  <div class="row">
+                    <div class="col l-half m1 s2">
+                      <i class="material-icons tooltipped" data-position="left" data-tooltip="{{this.quarter}}">{{this.quarterIcon}}</i>
+                    </div>
+                    <div class="col l-half m1 hide-on-small-only">
+                      <form action="#">
+                        <input type="checkbox" id="sel" />
+                        <label for="sel"></label>
+                      </form>
+                    </div>
+                    <div class="col l9 m6 s8 truncate">
+                      {{#each this.courses}}
+                        {{#if this.courseName}}
+                          <span class="new badge course" data-badge-caption="{{this.courseName}}"></span>
+                        {{else}}
+                          <span class="new badge activity light-blue" data-badge-caption="{{this.activityName}} ({{this.activityTime}})"></span>
+                        {{/if}}
+                      {{/each}}
+                    </div>
+                    <div class="col l2 m4 s2">
+                      <span class="btn-flat btn-small waves-effect waves-purple downvote right hide-on-small-only">
+                        <i class="material-icons">arrow_downward</i>
+                      </span>
+                      <span class="col s1 badge votes right">{{this.votes}}</span>
+                      <span class="btn-flat btn-small waves-effect waves-orange upvote right hide-on-small-only">
+                        <i class="material-icons">arrow_upward</i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="collapsible-body">
+                  <p><span class="vac-go-post-author">{{this.author}} - </span>{{this.body}}</p>
+                  <div id="comments" class="vac-go-comments">
+                    {{#each this.comments}}
+                      <blockquote><span class="vac-go-comment-author">{{this.author}}: </span>{{this.comment}}</blockquote>
+                    {{/each}}
+                  </div>
+                  <div class="container">
+                    <div class="input-field row">
+                      <div class="col l11 m11 s8">
+                        <label for="comment-reply">Reply</label>
+                        <input id="vac-go-reply" class="vac-go-reply" type="text" name="comment-reply" />
+                      </div>
+                      <div class="col l1 m1 s4 no-padding">
+                        <a class="waves-effect waves-green btn-flat comment-reply">
+                          <i class="material-icons">send</i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            {{else}}
+            {{/if}}
+          {{/each}}
+        </ul>
+      </div>
+      <blockquote class="blue-text">Past</blockquote>
+      <div class="vac-go-posts">
+        <ul class="collapsible popout" data-collapsible="accordion">
+          {{#each posts}}
+            {{#if this.date}}
+            {{else}}
+              <li class="post">
+                <div class="collapsible-header">
+                  <div class="row">
+                    <div class="col l-half m1 s2">
+                      <i class="material-icons tooltipped" data-position="left" data-tooltip="{{this.quarter}}">{{this.quarterIcon}}</i>
+                    </div>
+                    <div class="col l-half m1 hide-on-small-only">
+                      <form action="#">
+                        <input type="checkbox" id="sel" />
+                        <label for="sel"></label>
+                      </form>
+                    </div>
+                    <div class="col l9 m6 s8 truncate">
+                      {{#each this.courses}}
+                        {{#if this.courseName}}
+                          <span class="new badge course" data-badge-caption="{{this.courseName}}"></span>
+                        {{else}}
+                          <span class="new badge activity light-blue" data-badge-caption="{{this.activityName}} ({{this.activityTime}})"></span>
+                        {{/if}}
+                      {{/each}}
+                    </div>
+                    <div class="col l2 m4 s2">
+                      <span class="btn-flat btn-small waves-effect waves-purple downvote right hide-on-small-only">
+                        <i class="material-icons">arrow_downward</i>
+                      </span>
+                      <span class="col s1 badge votes right">{{this.votes}}</span>
+                      <span class="btn-flat btn-small waves-effect waves-orange upvote right hide-on-small-only">
+                        <i class="material-icons">arrow_upward</i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="collapsible-body">
+                  <p><span class="vac-go-post-author">{{this.author}} - </span>{{this.body}}</p>
+                  <div id="comments" class="vac-go-comments">
+                    {{#each this.comments}}
+                      <blockquote><span class="vac-go-comment-author">{{this.author}}: </span>{{this.comment}}</blockquote>
+                    {{/each}}
+                  </div>
+                  <div class="container">
+                    <div class="input-field row">
+                      <div class="col l11 m11 s8">
+                        <label for="comment-reply">Reply</label>
+                        <input id="vac-go-reply" class="vac-go-reply" type="text" name="comment-reply" />
+                      </div>
+                      <div class="col l1 m1 s4 no-padding">
+                        <a class="waves-effect waves-green btn-flat comment-reply">
+                          <i class="material-icons">send</i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            {{/if}}
+          {{/each}}
+        </ul>
+      </div>
+
+      <div id="add-post-modal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+          <h4>New Post</h4>
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s3">
+                <i class="material-icons prefix">import_contacts</i>
+                <select>
+                  <option value="" disabled selected>Dept.</option>
+                  <option value="ANTH">ANTH</option>
+                  <option value="CSE">CSE</option>
+                  <option value="COGS">COGS</option>
+                  <option value="COMM">COMM</option>
+                  <option value="MAE">MAE</option>
+                </select>
+              </div>
+              <div class="input-field col s9">
+                <select>
+                  <option value="" disabled selected>Course</option>
+                  <option value="100">100 - Intro</option>
+                  <option value="101">101 - Advanced Intro</option>
+                  <option value="200">200 - Grad Intro</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">directions_bike</i>
+                <input id="activity" type="text" />
+                <label for="activity">Activity Name</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">schedule</i>
+                <input id="hours-busy" type="number" min="0" class="validate" />
+                <label for="hours-busy">Hours Busy</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">mode_edit</i>
+                <textarea id="post-body" class="materialize-textarea"></textarea>
+                <label for="post-body">Post Body</label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Post</a>
+          <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
+          <a href="#!" class="modal-action modal-close waves-effect waves-teal btn-flat">Add Course</a>
+          <a href="#!" class="modal-action modal-close waves-effect waves-teal btn-flat">Add Activity</a>
+        </div>
+      </div>
+
+      <ul class="pagination center">
+        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active"><a href="#!">1</a></li>
+        <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+      </ul>
+
+      <div class="fixed-action-btn vertical" style="bottom: 45px; right: 24px;">
+        <a href="#!" class="btn-floating btn-large blue waves-effect waves-light">
+          <i class="material-icons">menu</i>
+        </a>
+        <ul>
+          <li>
+            <a id="send" class="btn-floating green lighten-1 tooltipped" data-position="left" data-tooltip="Send to Counselor">
+              <i class="material-icons">send</i>
+            </a>
+          </li>
+          <li>
+            <a href="#add-post-modal" class="btn-floating red lighten-1 modal-trigger tooltipped" data-position="left" data-tooltip="Add a New Post">
+              <i class="material-icons">add</i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

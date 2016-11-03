@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>VAC-GO | Add</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link href="./css/materialize.min.css" rel="stylesheet" />
+    <link href="./css/app.css" rel="stylesheet" />
+
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/materialize.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/add-post.js"></script>
+  </head>
+  <body>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper blue">
+          <span class="brand-logo center">VAC-Go!</span>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="./">Logout</a></li>
+          </ul>
+          <ul class="left hide-on-med-and-down">
+            <li class="vac-go-welcome">Welcome, <b>user.name1</b>!</li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="container">
+      <div class="row" id="add-post-row">
+        <div class="col l12 m12 s12">
+          <div class="card large white" id="add-post-card-large">
+            <div class="card-content">
+              <h5 class="header">New Post</h5>
+              <form id="add-post-form" action="#">
+                <div id="courses"></div>
+                <div id="activities"></div>
+                <div id="body" class="row">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <textarea id="post-body" class="materialize-textarea"></textarea>
+                    <label for="post-body">Post Body</label>
+                  </div>
+                </div>
+
+                <!-- Template for adding a course -->
+                <div class="course row hide" id="course-template">
+                  <div class="input-field col l3 m3 s4">
+                    <i class="material-icons prefix">school</i>
+                    <input type="text" class="depts autocomplete"/>
+                    <label class="course-dept" for="depts">Dept.</label>
+                  </div>
+                  <div class="input-field col l8 m8 s7">
+                    <select disabled>
+                      <option disabled selected>Course</option>
+                    </select>
+                  </div>
+                  <div class="input-field col l1 m1 s1 removeCourse">
+                    <i class="material-icons">delete</i>
+                  </div>
+                </div>
+
+                <!-- Template for adding an activity -->
+                <div class="activity row hide" id="activity-template">
+                  <div class="input-field col l6 m6 s6">
+                    <i class="material-icons prefix">business_center</i>
+                    <input id="activity" type="text" />
+                    <label class="activity-name" for="activity">Activity Name</label>
+                  </div>
+                  <div class="input-field col l5 s5 m5">
+                    <i class="material-icons prefix">schedule</i>
+                    <input id="hours-busy" type="number" min="0" class="validate" />
+                    <label class="activity-time" for="hours-busy">Hours Busy</label>
+                  </div>
+                  <div class="input-field col l1 m1 s1 removeActivity">
+                    <i class="material-icons">delete</i>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="card-action">
+              <button class="waves-effect waves-green btn-flat right">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="fixed-action-btn vertical">
+        <a class="btn-floating btn-large blue">
+          <i class="large material-icons">add</i>
+        </a>
+        <ul>
+          <li onclick="addCourse()">
+            <a class="btn-floating red tooltipped" data-position="left" data-tooltip="Add Course">
+              <i class="material-icons">school</i>
+            </a>
+          </li>
+          <li onclick="addActivity()">
+            <a class="btn-floating green tooltipped" data-position="left" data-tooltip="Add Activity">
+              <i class="material-icons">business_center</i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

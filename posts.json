@@ -1,0 +1,277 @@
+{
+	"posts": [
+		{
+			"date": "today",
+			"quarter": "Fall",
+			"quarterIcon": "nature_people",
+			"courses": [
+				{
+					"type": "course",
+					"courseName": "CSE 12"
+				},
+				{
+					"type": "course",
+					"courseName": "CSE 15L"
+				},
+				{
+					"type": "course",
+					"courseName": "CSE 20"
+				}
+			],
+			"votes": 57,
+			"author": "user.name1",
+			"body": "This is the body of the post",
+			"comments": [
+				{
+					"author": "user.name2",
+					"comment": "Can't go wrong with this schedule!"
+				},
+				{
+					"author": "user.name5",
+					"comment": "I thook these courses. Definitely do-able"
+				},
+				{
+					"author": "user.name1",
+					"comment": "Thanks guys!"
+				}
+			]
+		},
+		{
+			"date": "today",
+			"quarter": "Winter",
+			"quarterIcon": "ac_unit",
+			"courses": [
+				{
+					"type": "course",
+					"courseName": "CSE 8A"
+				},
+				{
+					"type": "course",
+					"courseName": "COGS 120"
+				},
+				{
+					"type": "course",
+					"courseName": "ANTH 23"
+				}
+			],
+			"votes": 16,
+			"author": "user.name2",
+			"body": "This is the body of the post",
+			"comments": []
+		},
+		{
+			"date": "today",
+			"quarter": "Spring",
+			"quarterIcon": "local_florist",
+			"courses": [
+				{
+					"type": "course",
+					"courseName": "CSE 30"
+				},
+				{
+					"type": "course",
+					"courseName": "CSE 140"
+				},
+				{
+					"type": "course",
+					"courseName": "CSE 140L"
+				},
+				{
+					"type": "course",
+					"courseName": "CSE 198"
+				}
+			],
+			"votes": 8,
+			"author": "user.name2",
+			"body": "This is the body of the post",
+			"comments": []
+		},
+		{
+			"date": "today",
+			"quarter": "Summer",
+			"quarterIcon": "wb_sunny",
+			"courses": [
+				{
+					"type": "course",
+					"courseName": "COMM 10"
+				},
+				{
+					"type": "course",
+					"courseName": "MAE 181"
+				},
+				{
+					"type": "course",
+					"courseName": "CSE 21"
+				},
+				{
+					"type": "activity",
+					"activityName": "Work",
+					"activityTime": "+5"
+				}
+			],
+			"votes": 23,
+			"author": "user.name5",
+			"body": "This is the body of the post",
+			"comments": []
+		},
+		{
+			"quarter": "Winter",
+			"quarterIcon": "ac_unit",
+			"courses": [
+				{
+					"type": "course",
+					"courseName": "CSE 131"
+				},
+				{
+					"type": "course",
+					"courseName": "CSE 103"
+				},
+				{
+					"type": "course",
+					"courseName": "COGS 187A"
+				},
+				{
+					"type": "activity",
+					"activityName": "Soccer",
+					"activityTime": "+2"
+				}
+			],
+			"votes": 14,
+			"author": "user.name2",
+			"body": "This is the body of the post",
+			"comments": []
+		},
+		{
+			"quarter": "Winter",
+			"quarterIcon": "ac_unit",
+			"courses": [
+				{
+					"type": "course",
+					"courseName": "CSE 123"
+				},
+				{
+					"type": "course",
+					"courseName": "CSE 131"
+				},
+				{
+					"type": "course",
+					"courseName": "CSE 132A"
+				},
+				{
+					"type": "activity",
+					"courseName": "CSE 170"
+				}
+			],
+			"votes": 9,
+			"author": "user.name4",
+			"body": "This is the body of the post",
+			"comments": []
+		},
+		{
+			"quarter": "Winter",
+			"quarterIcon": "ac_unit",
+			"courses": [
+				{
+					"type": "course",
+					"courseName": "CSE 100"
+				},
+				{
+					"type": "course",
+					"courseName": "CSE 103"
+				},
+				{
+					"type": "course",
+					"courseName": "CSE 141"
+				},
+				{
+					"type": "activity",
+					"courseName": "CSE 197"
+				},
+				{
+					"type": "activity",
+					"courseName": "POLI 113A"
+				}
+			],
+			"votes": 2,
+			"author": "user.name5",
+			"body": "This is the body of the post",
+			"comments": []
+		},
+		{
+			"quarter": "Spring",
+			"quarterIcon": "local_florist",
+			"courses": [
+				{
+					"type": "course",
+					"courseName": "CSE 132A"
+				},
+				{
+					"type": "course",
+					"courseName": "CSE 151"
+				},
+				{
+					"type": "course",
+					"courseName": "TDMV 142"
+				},
+				{
+					"type": "activity",
+					"activityName": "doctors without borders",
+					"activityTime": "+2"
+				}
+			],
+			"votes": 11,
+			"author": "user.name3",
+			"body": "This is the body of the post",
+			"comments": []
+		},
+		{
+			"quarter": "Summer",
+			"quarterIcon": "wb_sunny",
+			"courses": [
+				{
+					"type": "course",
+					"courseName": "CSE 136"
+				},
+				{
+					"type": "course",
+					"courseName": "COGS 187A"
+				},
+				{
+					"type": "activity",
+					"activityName": "work",
+					"activityTime": "+10"
+				}
+			],
+			"votes": 17,
+			"author": "user.name3",
+			"body": "This is the body of the post",
+			"comments": []
+		},
+		{
+			"quarter": "Spring",
+			"quarterIcon": "local_florist",
+			"courses": [
+				{
+					"type": "course",
+					"courseName": "CSE 20"
+				},
+				{
+					"type": "course",
+					"courseName": "CSE 105"
+				},
+				{
+					"type": "course",
+					"courseName": "TDMV 110"
+				},
+				{
+					"type": "course",
+					"courseName": "CSE 140L"
+				}
+			],
+			"votes": 5,
+			"author": "user.name2",
+			"body": "This is the body of the post",
+			"comments": []
+		}
+	]
+}

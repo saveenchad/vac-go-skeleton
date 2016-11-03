@@ -3,18 +3,17 @@
   "description": "Serving static content via html files",
   "version": "0.0.1",
   "author": "Team Jingle",
-
   "repository": {
-  	"type": "git",
-  	"url": "https://github.com/saveenchad/vac-go-skeleton"
+    "type": "git",
+    "url": "https://github.com/saveenchad/vac-go-skeleton"
   },
   "license": "MIT",
-
   "main": "server.js",
   "dependencies": {
-    "express": "3.x"
+    "express": "3.x",
+    "firebase": "^3.5.3"
   },
   "engines": {
-  	"node": "0.10.x"
+    "node": "0.10.x"
   }
 }
