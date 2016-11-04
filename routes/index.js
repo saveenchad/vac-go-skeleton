@@ -21,3 +21,7 @@ exports.signedIn = function(req, res) {
 exports.view = function(req, res) {
 	res.render('login');
 };
+
+exports.counselor = function(req, res) {
+	res.render('counselor');
+}

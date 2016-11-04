@@ -49,6 +49,7 @@ app.get('/', index.view);
 app.get('/add', index.add);
 app.get('/getMajorsFile', index.getMajorsFile);
 app.get('/signed-in', index.signedIn);
+app.get('/counselor', index.counselor);
 
 app.post('/addNewPost', function(req, res) {
   var postsFile = fs.readFileSync('./data.json');
