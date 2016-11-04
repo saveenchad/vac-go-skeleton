@@ -5,6 +5,7 @@ var http       = require('http');
 var path       = require('path');
 var handlebars = require('express-handlebars');
 var firebase   = require('firebase');
+var fs         = require('fs');
 
 var index      = require('./routes/index.js');
 
@@ -27,6 +28,7 @@ app.engine('handlebars', handlebars({
   }
 }));
 app.set('view engine', 'handlebars');
+app.set('view cache', false);
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -46,7 +48,18 @@ if ('development' == app.get('env')) {
 app.get('/', index.view);
 app.get('/add', index.add);
 app.get('/getMajorsFile', index.getMajorsFile);
-app.get('/signed-in', index.login);
+app.get('/signed-in', index.signedIn);
+
+app.post('/addNewPost', function(req, res) {
+  var postsFile = fs.readFileSync('./data.json');
+  var postsObj = JSON.parse(postsFile);
+  postsObj.posts.push(req.body);
+  postsFile = JSON.stringify(postsObj);
+  fs.writeFileSync('./data.json', postsFile);
+
+  res.render('signed-in', {posts: postsObj.posts});
+  res.status(200).send("success");
+});
 
 /** START SERVER **/
 http.createServer(app).listen(app.get('port'), function() {

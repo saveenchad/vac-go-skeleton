@@ -9,7 +9,8 @@ function getCourseCode(courseTitle) {
 function addCourse() {
   var newCourseRow = $("#course-template").clone()
                                           .removeClass('hide')
-                                          .removeAttr('id');
+                                          .removeAttr('id')
+                                          .attr("data-course-index", courseIndex);
 
   newCourseRow
     .find('input[type="text"]').attr({'data-course-index': courseIndex,
@@ -18,10 +19,6 @@ function addCourse() {
     .find('select').attr('id', 'course-select-' + courseIndex).end();
 
   $("#courses").append(newCourseRow);
-
-  $("#course-dept-" + courseIndex).autocomplete({
-    data: depts
-  });
   $("#course-select-" + courseIndex).material_select();
 
   courseIndex++;
@@ -30,7 +27,8 @@ function addCourse() {
 function addActivity() {
   var newActivityRow = $("#activity-template").clone()
                                               .removeClass('hide')
-                                              .removeAttr('id');
+                                              .removeAttr('id')
+                                              .attr("data-activity-index", activityIndex);
 
   newActivityRow
     .find('input[type="text"]').attr({'data-activity-index': activityIndex,
@@ -39,9 +37,9 @@ function addActivity() {
     .find('input[type="number"]').attr('id', "activity-time-" + activityIndex).end()
     .find('label.activity-time').attr('for', "activity-time-" + activityIndex).end();
 
-  activityIndex++;
-
   $("#activities").append(newActivityRow);
+
+  activityIndex++;
 };
 
 $(document).ready(function() {
@@ -80,7 +78,6 @@ $(document).ready(function() {
         }
       }
 
-      $(siblingSelect).material_select('destroy');
       $(siblingSelect).material_select();
     })
     .on('click', '.removeCourse', function removeCourse() {
@@ -88,5 +85,117 @@ $(document).ready(function() {
     })
     .on('click', '.removeActivity', function removeActivity() {
       $(this).parents('.row.activity').remove();
+    });
+
+    $("#submit-post").on('click', function submitPost() {
+      var post        = {}, postCourses = [];
+      var selQuarter  = $("input[name='quarter']:checked").attr("id");
+      var selQtrIcon  = null;
+      var courses     = $("#courses").children();
+      var activities  = $("#activities").children();
+      var postBody    = $("#post-body");
+      var errors      = false;
+
+      if(!selQuarter) {
+        Materialize.toast("Please select a quarter!", 4000);
+        errors = true;
+      }
+
+      if(!courses.length && !activities.length) {
+        Materialize.toast("Please add at least one course or activity!", 4000);
+        errors = true;
+      }
+
+      if(!postBody.val().length) {
+        Materialize.toast("Please add an explanation for your courses and/or activities", 4000);
+        errors = true;
+      }
+
+      if(errors) return;
+
+      switch(selQuarter) {
+        case "fall":
+          selQuarter = "Fall";
+          selQtrIcon = "nature_people";
+          break;
+        case "winter":
+          selQuarter = "Winter";
+          selQtrIcon = "ac_unit";
+          break;
+        case "spring":
+          selQuarter = "Spring";
+          selQtrIcon = "local_florist";
+          break;
+        case "summer":
+          selQuarter = "Summer";
+          selQtrIcon = "wb_sunny";
+          break;
+      }
+
+      for(var course of courses) {
+        cIndex = course.getAttribute("data-course-index");
+        cName = $("#course-dept-" + cIndex).val();
+        cCourse = $("#course-select-" + cIndex).val();
+        if(!cName || !cCourse) {
+          errors = true;
+        } else {
+          postCourses.push({
+            type: "course",
+            courseName: cName + " " + cCourse
+          });
+        }
+      }
+
+      if(errors) {
+        Materialize.toast("One or more courses is not correctly filled in!", 4000);
+        return;
+      }
+
+      for(var activity of activities) {
+        aIndex = activity.getAttribute("data-activity-index");
+        aName = $("#activity-name-" + aIndex).val();
+        aTime = $("#activity-time-" + aIndex).val();
+        if(!aName || !aTime) {
+          errors = true;
+        } else {
+          postCourses.push({
+            type: "activity",
+            activityName: aName,
+            activityTime: "+" + aTime
+          });
+        }
+      }
+
+      if(errors) {
+        Materialize.toast("One or more activities is not correctly filled in!", 4000);
+        return;
+      }
+
+      post = {
+        date: Date.now(),
+        quarter: selQuarter,
+        quarterIcon: selQtrIcon,
+        courses: postCourses,
+        votes: 0,
+        author: "user.name1",
+        body: postBody.val(),
+        comments: []
+      }
+
+      $.ajax({
+        type: "POST",
+        url: "/addNewPost",
+        contentType: "application/json; charset=utf-8",
+        dataType: "text",
+        data: JSON.stringify(post),
+        async: true,
+        success: function(res) {
+          console.log(res);
+        },
+        error: function(err) {
+          Materialize.toast("Error while submitting post!", 5000);
+          console.log(err);
+        }
+      });
     });
 });

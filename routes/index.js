@@ -10,7 +10,7 @@ exports.getMajorsFile = function(req, res) {
 	res.json(majors);
 };
 
-exports.login = function(req, res) {
+exports.signedIn = function(req, res) {
   res.render('signed-in', {posts: posts.posts});
 };
 

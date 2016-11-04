@@ -33,8 +33,27 @@
         <div class="col l12 m12 s12">
           <div class="card large white" id="add-post-card-large">
             <div class="card-content">
-              <h5 class="header">New Post</h5>
+              <h5 class="card-title">New Post</h5>
               <form id="add-post-form" action="#">
+                <div id="quarter">
+                  <h6>Select a Quarter:</h6>
+                  <span class="quarter-opt col l3 m3 s6">
+                    <input class="with-gap" name="quarter" type="radio" id="fall" />
+                    <label for="fall">Fall</label>
+                  </span>
+                  <span class="quarter-opt col l3 m3 s6">
+                    <input class="with-gap" name="quarter" type="radio" id="winter" />
+                    <label for="winter">Winter</label>
+                  </span>
+                  <span class="quarter-opt col l3 m2 s6">
+                    <input class="with-gap" name="quarter" type="radio" id="spring" />
+                    <label for="spring">Spring</label>
+                  </span>
+                  <span class="quarter-opt col l3 m4 s6">
+                    <input class="with-gap" name="quarter" type="radio" id="summer" />
+                    <label for="summer">Summer (I/II)</label>
+                  </span>
+                </div>
                 <div id="courses"></div>
                 <div id="activities"></div>
                 <div id="body" class="row">
@@ -49,7 +68,7 @@
                 <div class="course row hide" id="course-template">
                   <div class="input-field col l3 m3 s4">
                     <i class="material-icons prefix">school</i>
-                    <input type="text" class="depts autocomplete"/>
+                    <input type="text" class="depts"/>
                     <label class="course-dept" for="depts">Dept.</label>
                   </div>
                   <div class="input-field col l8 m8 s7">
@@ -64,14 +83,14 @@
 
                 <!-- Template for adding an activity -->
                 <div class="activity row hide" id="activity-template">
-                  <div class="input-field col l6 m6 s6">
+                  <div class="input-field col l8 m7 s6">
                     <i class="material-icons prefix">business_center</i>
                     <input id="activity" type="text" />
                     <label class="activity-name" for="activity">Activity Name</label>
                   </div>
-                  <div class="input-field col l5 s5 m5">
+                  <div class="input-field col l3 m4 s5">
                     <i class="material-icons prefix">schedule</i>
-                    <input id="hours-busy" type="number" min="0" class="validate" />
+                    <input id="hours-busy" type="number" min="0" max="168" class="validate" />
                     <label class="activity-time" for="hours-busy">Hours Busy</label>
                   </div>
                   <div class="input-field col l1 m1 s1 removeActivity">
@@ -81,7 +100,8 @@
               </form>
             </div>
             <div class="card-action">
-              <button class="waves-effect waves-green btn-flat right">Submit</button>
+              <button id="submit-post" class="waves-effect waves-green btn-flat right">Submit</button>
+              <a href="/signed-in" class="btn waves-effect waves-red btn-flat right">Cancel</a>
             </div>
           </div>
         </div>
