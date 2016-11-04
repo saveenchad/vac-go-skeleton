@@ -57,7 +57,6 @@ app.post('/addNewPost', function(req, res) {
   postsFile = JSON.stringify(postsObj);
   fs.writeFileSync('./data.json', postsFile);
 
-  res.render('signed-in', {posts: postsObj.posts});
   res.status(200).send("success");
 });
 

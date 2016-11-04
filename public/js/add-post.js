@@ -190,7 +190,8 @@ $(document).ready(function() {
         data: JSON.stringify(post),
         async: true,
         success: function(res) {
-          console.log(res);
+          console.log("Post successfully added");
+          location.href="./signed-in";
         },
         error: function(err) {
           Materialize.toast("Error while submitting post!", 5000);

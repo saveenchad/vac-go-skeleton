@@ -1,19 +1,23 @@
-// Get all of our friend data
-var posts  = require('../data.json');
-var majors = require('../majors.json');
+var fs = require('fs');
 
 exports.add = function(req, res) {
-	res.render('add-post', {majors: majors.majors});
+	var majorsFile = fs.readFileSync('majors.json');
+	var majorsObj = JSON.parse(majorsFile);
+	res.render('add-post', {majors: majorsObj.majors});
 };
 
 exports.getMajorsFile = function(req, res) {
-	res.json(majors);
+	var majorsFile = fs.readFileSync('majors.json');
+	var majorsObj = JSON.parse(majorsFile);
+	res.json(majorsObj);
 };
 
 exports.signedIn = function(req, res) {
-  res.render('signed-in', {posts: posts.posts});
+	var postsFile = fs.readFileSync('data.json');
+	var postsObj = JSON.parse(postsFile);
+  res.render('signed-in', {posts: postsObj.posts});
 };
 
 exports.view = function(req, res) {
-	res.render('login', {posts: posts.posts});
+	res.render('login');
 };
