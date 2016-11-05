@@ -6,6 +6,7 @@ var path       = require('path');
 var handlebars = require('express-handlebars');
 var firebase   = require('firebase');
 var fs         = require('fs');
+var uuid       = require('node-uuid');
 
 var index      = require('./routes/index.js');
 
@@ -52,6 +53,7 @@ app.get('/signed-in', index.signedIn);
 app.get('/counselor', index.counselor);
 
 app.post('/addNewPost', function(req, res) {
+  req.body.id = uuid.v4();
   var postsFile = fs.readFileSync('./data.json');
   var postsObj = JSON.parse(postsFile);
   postsObj.posts.push(req.body);
