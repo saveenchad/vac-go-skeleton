@@ -1,4 +1,5 @@
 var PORT = 3000;
+var KEY = "Team Jingle Secret Key";
 
 var express    = require('express');
 var http       = require('http');
@@ -7,10 +8,18 @@ var handlebars = require('express-handlebars');
 var firebase   = require('firebase');
 var fs         = require('fs');
 var uuid       = require('node-uuid');
+var crypto     = require('crypto-js');
 
 var index      = require('./routes/index.js');
 
 var app        = express();
+
+// var test = crypto.AES.encrypt("saveenchad@gmail.com", KEY);
+// console.log("ENCRYPT TEST");
+// console.log(test.toString());
+// console.log("DECRYPT TEST");
+// var test2 = crypto.AES.decrypt("U2FsdGVkX1+hjj75pkATpmCjE2NvPPDzdKcA2hF0t1jl1IDZkECWwBC5dvKwiGvk", KEY);
+// console.log(test2);
 
 app.set('port', process.env.PORT || PORT);
 app.set('views', path.join(__dirname, 'views'));
@@ -35,7 +44,7 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(express.cookieParser('VAC-Go secret key!'));
+app.use(express.cookieParser(KEY));
 app.use(express.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
@@ -52,15 +61,79 @@ app.get('/getMajorsFile', index.getMajorsFile);
 app.get('/signed-in', index.signedIn);
 app.get('/counselor', index.counselor);
 
-app.post('/addNewPost', function(req, res) {
-  req.body.id = uuid.v4();
-  var postsFile = fs.readFileSync('./data.json');
-  var postsObj = JSON.parse(postsFile);
-  postsObj.posts.push(req.body);
-  postsFile = JSON.stringify(postsObj);
-  fs.writeFileSync('./data.json', postsFile);
+app.post('/login', function(req, res) {
+  // read the users file and save the text in a variable
+  var usersFile = fs.readFileSync('./users.json');
+  // convert the text to JSON
+  var users = JSON.parse(usersFile).users;
 
+  // loop through array
+  for(var user of users) {
+    // if usernames match
+    if(users[user].username === req.body.username) {
+      // TODO: The following is terrible code and horribly insecure...I know...
+      // decrypt the stored password and compare to passed in value
+      var dPass = crypto.AES.decrypt(users[user].password.toString(), KEY).toString(crypto.enc.Utf8);
+      if(dPass === req.body.password) {
+        // if they match, return that it passed
+        res.status(200).send("success");
+      }
+    }
+  }
+  // if none of the usernames/passwords match, return failure
+  res.status(401).send("failure");
+});
+
+app.post('/signup', function(req, res) {
+  // read the users file and store the text in a variable
+  var usersFile = fs.readFileSync('./users.json');
+  // convert the text to JSON
+  var usersArry = JSON.parse(usersFile).users;
+  // generate and store a unique ID for the new user
+  req.body.id = uuid.v4();
+  // encrypt their password
+  req.body.password = crypto.AES.encrypt(req.body.password, KEY);
+  // push the new user into the users JSON object
+  usersArry.push(req.body);
+  // convert the JSON back into text
+  usersFile = JSON.stringify(usersArry);
+  // write the JSON to the file
+  fs.writeFileSync('./users.json', usersFile);
+  // return success
   res.status(200).send("success");
+});
+
+app.post('/addNewPost', function(req, res) {
+  // generate and store a unique ID with each post
+  req.body.id = uuid.v4();
+  // read the posts file and save the text in a variable
+  var postsFile = fs.readFileSync('./data.json');
+  // convert the text to JSON
+  var postsArry = JSON.parse(postsFile).posts;
+  // add the new data to the JSON
+  postsArry.push(req.body);
+  // convert the JSON back into text
+  postsFile = JSON.stringify(postsArry);
+  // write the text back into the file
+  fs.writeFileSync('./data.json', postsFile);
+  // send a success to the frontend
+  res.status(200).send("success");
+});
+
+app.post('/upvote', function(req, res) {
+
+});
+
+app.post('/downvote', function(req, res) {
+
+});
+
+app.post('/postComment', function(req, res) {
+
+});
+
+app.post('/sendToCounselor', function(req, res) {
+
 });
 
 /** START SERVER **/
