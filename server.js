@@ -14,13 +14,6 @@ var index      = require('./routes/index.js');
 
 var app        = express();
 
-// var test = crypto.AES.encrypt("saveenchad@gmail.com", KEY);
-// console.log("ENCRYPT TEST");
-// console.log(test.toString());
-// console.log("DECRYPT TEST");
-// var test2 = crypto.AES.decrypt("U2FsdGVkX1+hjj75pkATpmCjE2NvPPDzdKcA2hF0t1jl1IDZkECWwBC5dvKwiGvk", KEY);
-// console.log(test2);
-
 app.set('port', process.env.PORT || PORT);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', handlebars({
@@ -120,21 +113,21 @@ app.post('/addNewPost', function(req, res) {
   res.status(200).send("success");
 });
 
-app.post('/upvote', function(req, res) {
-
-});
-
-app.post('/downvote', function(req, res) {
-
-});
-
-app.post('/postComment', function(req, res) {
-
-});
-
-app.post('/sendToCounselor', function(req, res) {
-
-});
+// app.post('/upvote', function(req, res) {
+//
+// });
+//
+// app.post('/downvote', function(req, res) {
+// 
+// });
+//
+// app.post('/postComment', function(req, res) {
+//
+// });
+//
+// app.post('/sendToCounselor', function(req, res) {
+//
+// });
 
 /** START SERVER **/
 http.createServer(app).listen(app.get('port'), function() {
