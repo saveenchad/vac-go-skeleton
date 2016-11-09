@@ -59,35 +59,35 @@ app.post('/login', function(req, res) {
   var usersFile = fs.readFileSync('./users.json');
   // convert the text to JSON
   var users = JSON.parse(usersFile).users;
-
   // loop through array
   for(var i = 0; i < users.length; i++) {
     // if usernames match
     if(users[i].username === req.body.username) {
       // TODO: The following is terrible code and horribly insecure...I know...
       // decrypt the stored password and compare to passed in value
-      var dPass = crypto.AES.decrypt(users[i].password.toString(), KEY).toString(crypto.enc.Utf8);
+      var dPass = crypto.AES.decrypt(users[i].password, KEY).toString(crypto.enc.Utf8);
       if(dPass === req.body.password) {
         // if they match, return that it passed
         res.status(200).send("success");
+        return;
       }
     }
   }
   // if none of the usernames/passwords match, return failure
-  res.status(401).send("failure");
+  res.status(403).send("failure");
 });
 
 app.post('/signup', function(req, res) {
   // read the users file and store the text in a variable
   var usersFile = fs.readFileSync('./users.json');
   // convert the text to JSON
-  var usersArry = JSON.parse(usersFile).users;
+  var usersArry = JSON.parse(usersFile);
   // generate and store a unique ID for the new user
   req.body.id = uuid.v4();
   // encrypt their password
-  req.body.password = crypto.AES.encrypt(req.body.password, KEY);
+  req.body.password = crypto.AES.encrypt(req.body.password, KEY).toString();
   // push the new user into the users JSON object
-  usersArry.push(req.body);
+  usersArry.users.push(req.body);
   // convert the JSON back into text
   usersFile = JSON.stringify(usersArry);
   // write the JSON to the file

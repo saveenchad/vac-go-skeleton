@@ -1,15 +1,1 @@
-{
-  "users": [
-    {
-      "username": "user",
-      "password": "test",
-      "email": "",
-      "college": "",
-      "major": ""
-    },
-    {
-      "username": "user2",
-      "password": "test2"
-    }
-  ]
-}
+{"users":[{"username":"user","password":"test","email":"","college":"","major":""},{"username":"test","password":"U2FsdGVkX19LgOp+ljehMD2pJ2rJGnY9sXhJT/BhVFc=","email":"test@test.com","college":"W","major":"CSE"},{"username":"Bob","password":"U2FsdGVkX1+9y7K51JGeWZQsLxP2tf78+VXlPBP6Szk=","email":"bob@bob.com","college":"W","major":"CSE","id":"d69c23d2-c2f3-4bb1-982c-d04467db14f7"}]}
