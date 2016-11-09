@@ -5,7 +5,7 @@ var express    = require('express');
 var http       = require('http');
 var path       = require('path');
 var handlebars = require('express-handlebars');
-var firebase   = require('firebase');
+// var firebase   = require('firebase');
 var fs         = require('fs');
 var uuid       = require('node-uuid');
 var crypto     = require('crypto-js');
@@ -63,10 +63,10 @@ app.post('/login', function(req, res) {
   // loop through array
   for(var user of users) {
     // if usernames match
-    if(users[user].username === req.body.username) {
+    if(user.username === req.body.username) {
       // TODO: The following is terrible code and horribly insecure...I know...
       // decrypt the stored password and compare to passed in value
-      var dPass = crypto.AES.decrypt(users[user].password.toString(), KEY).toString(crypto.enc.Utf8);
+      var dPass = crypto.AES.decrypt(user.password.toString(), KEY).toString(crypto.enc.Utf8);
       if(dPass === req.body.password) {
         // if they match, return that it passed
         res.status(200).send("success");
@@ -118,7 +118,7 @@ app.post('/addNewPost', function(req, res) {
 // });
 //
 // app.post('/downvote', function(req, res) {
-// 
+//
 // });
 //
 // app.post('/postComment', function(req, res) {
