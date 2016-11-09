@@ -61,12 +61,12 @@ app.post('/login', function(req, res) {
   var users = JSON.parse(usersFile).users;
 
   // loop through array
-  for(var user of users) {
+  for(var i = 0; i < users.length; i++) {
     // if usernames match
-    if(user.username === req.body.username) {
+    if(users[i].username === req.body.username) {
       // TODO: The following is terrible code and horribly insecure...I know...
       // decrypt the stored password and compare to passed in value
-      var dPass = crypto.AES.decrypt(user.password.toString(), KEY).toString(crypto.enc.Utf8);
+      var dPass = crypto.AES.decrypt(users[i].password.toString(), KEY).toString(crypto.enc.Utf8);
       if(dPass === req.body.password) {
         // if they match, return that it passed
         res.status(200).send("success");
