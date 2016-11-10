@@ -18,6 +18,8 @@
         }
       ],
       "votes": 57,
+      "upvoters": [],
+      "downvoters": [],
       "author": "user.name1",
       "body": "This is the body of the post",
       "comments": [
@@ -33,7 +35,8 @@
           "author": "user.name1",
           "comment": "Thanks guys!"
         }
-      ]
+      ],
+      "id": "62d11253-cf6e-469a-9502-560701eeba8e"
     },
     {
       "quarter": "Winter",
@@ -53,11 +56,12 @@
         }
       ],
       "votes": 16,
+      "upvoters": [],
+      "downvoters": [],
       "author": "user.name2",
       "body": "This is the body of the post",
-      "comments": [
-
-      ]
+      "comments": [],
+      "id": "e99c181b-95ac-40d0-ac82-bf007992fd5b"
     },
     {
       "quarter": "Spring",
@@ -81,11 +85,12 @@
         }
       ],
       "votes": 8,
+      "upvoters": [],
+      "downvoters": [],
       "author": "user.name2",
       "body": "This is the body of the post",
-      "comments": [
-
-      ]
+      "comments": [],
+      "id": "f491db09-18e1-4839-a36a-18387d08f0ce"
     },
     {
       "quarter": "Summer",
@@ -110,11 +115,12 @@
         }
       ],
       "votes": 23,
+      "upvoters": [],
+      "downvoters": [],
       "author": "user.name5",
       "body": "This is the body of the post",
-      "comments": [
-
-      ]
+      "comments": [],
+      "id": "ab42acdb-0412-458e-81b7-ad8fa2de7e80"
     },
     {
       "quarter": "Winter",
@@ -139,11 +145,12 @@
         }
       ],
       "votes": 14,
+      "upvoters": [],
+      "downvoters": [],
       "author": "user.name2",
       "body": "This is the body of the post",
-      "comments": [
-
-      ]
+      "comments": [],
+      "id": "1840a87f-6045-485d-a61a-e65139bd97dd"
     },
     {
       "quarter": "Winter",
@@ -167,11 +174,12 @@
         }
       ],
       "votes": 9,
+      "upvoters": [],
+      "downvoters": [],
       "author": "user.name4",
       "body": "This is the body of the post",
-      "comments": [
-
-      ]
+      "comments": [],
+      "id": "eceddb02-b645-4eea-84d7-1ea1ed7bc59f"
     },
     {
       "quarter": "Winter",
@@ -199,11 +207,12 @@
         }
       ],
       "votes": 2,
+      "upvoters": [],
+      "downvoters": [],
       "author": "user.name5",
       "body": "This is the body of the post",
-      "comments": [
-
-      ]
+      "comments": [],
+      "id": "aed609f8-8f74-4375-98ba-7a6bc493539f"
     },
     {
       "quarter": "Spring",
@@ -228,11 +237,12 @@
         }
       ],
       "votes": 11,
+      "upvoters": [],
+      "downvoters": [],
       "author": "user.name3",
       "body": "This is the body of the post",
-      "comments": [
-
-      ]
+      "comments": [],
+      "id": "afdc4a4e-4b6d-4c3e-ae56-356814def8a3"
     },
     {
       "quarter": "Summer",
@@ -253,11 +263,12 @@
         }
       ],
       "votes": 17,
+      "upvoters": [],
+      "downvoters": [],
       "author": "user.name3",
       "body": "This is the body of the post",
-      "comments": [
-
-      ]
+      "comments": [],
+      "id": "8b269952-c779-46a5-aade-02713185c00a"
     },
     {
       "quarter": "Spring",
@@ -281,11 +292,12 @@
         }
       ],
       "votes": 5,
+      "upvoters": [],
+      "downvoters": [],
       "author": "user.name2",
       "body": "This is the body of the post",
-      "comments": [
-
-      ]
+      "comments": [],
+      "id": "885b79d4-7d48-4bf0-bfd2-4e3ad759d12e"
     },
     {
       "date": 1478278081274,
@@ -303,11 +315,11 @@
         }
       ],
       "votes": 0,
+      "upvoters": [],
+      "downvoters": [],
       "author": "user.name1",
       "body": "this is a test post",
-      "comments": [
-
-      ],
+      "comments": [],
       "id": "d59a01ce-a446-43a7-9f02-9b52df190ca0"
     },
     {
@@ -321,11 +333,11 @@
         }
       ],
       "votes": 0,
+      "upvoters": [],
+      "downvoters": [],
       "author": "user.name1",
       "body": "dmsakdmaskldmasld",
-      "comments": [
-
-      ],
+      "comments": [],
       "id": "b723c182-84f8-4125-8a82-702b0dba7b8b"
     }
   ]

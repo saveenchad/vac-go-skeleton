@@ -20,8 +20,8 @@
         </div>
       </nav>
     </div> <!-- end of navbar-fixed -->
-    <div class="row">
-      <div class="col s12">
+    <div class="row no-margin-bottom">
+      <div class="col l12 m12 s12">
         <ul class="tabs">
           <li class="tab col l4 m4 s4"><a class="active" href="#login">Login</a></li>
           <li class="tab col l4 m4 s4"><a href="#signup">Sign Up</a></li>
@@ -41,6 +41,10 @@
               <input id="lPassword" type="password" pattern=".{5,}" class="validate">
               <label for="lPassword" data-success="Looks good!" data-error="Password not of correct length!">Password</label>
             </div>
+            <div class="input-field col l12 m12 s12">
+              <input type="checkbox" id="lSaveLogin" />
+              <label for="lSaveLogin">Keep me logged in</label>
+            </div>
           </div>
           <div class="row center">
             <button id="loginBtn" class="btn waves-effect waves-light" type="button">
@@ -51,21 +55,21 @@
       </div>
       <div id="signup" class="container">
         <form class="col l12 m12 s12">
-          <div class="row">
+          <div class="row no-margin-bottom">
             <div class="input-field col l12 m12 s12">
               <i class="material-icons prefix">email</i>
               <input id="sEmail" type="email" class="validate" />
-              <label for="sEmail" data-success="Looks good!" data-error="Bad email format!">Email</label>
+              <label for="sEmail" data-success="Looks good!" data-error="That's not an email!">Email</label>
             </div>
           </div>
-          <div class="row">
+          <div class="row no-margin-bottom">
             <div class="input-field col l12 m12 s12">
               <i class="material-icons prefix">account_circle</i>
               <input id="sUsername" type="text" pattern=".{3,}" class="validate" />
               <label for="sUsername" data-success="Looks good!" data-error="Please input at least 3 characters">Username</label>
             </div>
           </div>
-          <div class="row">
+          <div class="row no-margin-bottom">
             <div class="input-field col l6 m12 s12">
               <i class="material-icons prefix">lock_open</i>
               <input id="sPassword" type="password" pattern=".{5,}" class="validate" />
@@ -77,7 +81,7 @@
               <label id="confLabel" for="confPassword" data-error="Passwords don't match!">Confirm Password</label>
             </div>
           </div>
-          <div class="row">
+          <div class="row no-margin-bottom">
             <div class="input-field col l8 m6 s12">
               <i class="material-icons prefix">school</i>
               <select id="collegeSel">
@@ -102,7 +106,13 @@
               </select>
             </div>
           </div>
-          <div class="row center">
+          <div class="row">
+            <div class="input-field col l12 m12 s12">
+              <input type="checkbox" id="sSaveLogin" />
+              <label for="sSaveLogin">Keep me logged in</label>
+            </div>
+          </div>
+          <div class="row center no-margin-bottom">
             <button id="signupBtn" class="btn waves-effect waves-light" type="button">
               Sign Up<i class="material-icons right">send</i>
             </button>

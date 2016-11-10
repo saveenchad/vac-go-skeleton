@@ -54,6 +54,30 @@ app.get('/getMajorsFile', index.getMajorsFile);
 app.get('/signed-in', index.signedIn);
 app.get('/counselor', index.counselor);
 
+app.post('/getVotersById', function(req, res) {
+  // read the posts file and save the text in a variable
+  var postsFile = fs.readFileSync('./data.json');
+  // convert the text to JSON
+  var postsArry = JSON.parse(postsFile).posts;
+
+  // iterate over posts to find the post that matches the ID passed in
+  for(var i = 0; i < postsArry.length; i++) {
+    if(postsArry[i].id = req.body.id) {
+      // build an object with the data to return
+      var retObj = {
+        upvoters: postsArry[i].upvoters,
+        downvoters: postsArry[i].downvoters
+      };
+      // return the object to the frontend
+      res.status(200).send(retObj);
+      return;
+    }
+  }
+
+  // if no post can be found with a matching ID, return error
+  res.status(404).send("failure");
+});
+
 app.post('/login', function(req, res) {
   // read the users file and save the text in a variable
   var usersFile = fs.readFileSync('./users.json');
@@ -67,8 +91,10 @@ app.post('/login', function(req, res) {
       // decrypt the stored password and compare to passed in value
       var dPass = crypto.AES.decrypt(users[i].password, KEY).toString(crypto.enc.Utf8);
       if(dPass === req.body.password) {
+        // send a user object back to the client side
+        var userObj = buildUserObj(users[i]);
         // if they match, return that it passed
-        res.status(200).send("success");
+        res.status(200).send(userObj);
         return;
       }
     }
@@ -89,11 +115,13 @@ app.post('/signup', function(req, res) {
   // push the new user into the users JSON object
   usersArry.users.push(req.body);
   // convert the JSON back into text
-  usersFile = JSON.stringify(usersArry);
+  usersFile = JSON.stringify(usersArry, null, 2);
   // write the JSON to the file
   fs.writeFileSync('./users.json', usersFile);
+  // send a user object back to the client side
+  var userObj = buildUserObj(req.body);
   // return success
-  res.status(200).send("success");
+  res.status(200).send(userObj);
 });
 
 app.post('/addNewPost', function(req, res) {
@@ -106,28 +134,59 @@ app.post('/addNewPost', function(req, res) {
   // add the new data to the JSON
   postsArry.push(req.body);
   // convert the JSON back into text
-  postsFile = JSON.stringify(postsArry);
+  postsFile = JSON.stringify(postsArry, null, 2);
   // write the text back into the file
   fs.writeFileSync('./data.json', postsFile);
   // send a success to the frontend
   res.status(200).send("success");
 });
 
-// app.post('/upvote', function(req, res) {
+// app.post('/upvotePostById', function(req, res) {
 //
 // });
-//
-// app.post('/downvote', function(req, res) {
-//
-// });
-//
-// app.post('/postComment', function(req, res) {
+
+// app.post('/downvotePostById', function(req, res) {
 //
 // });
-//
-// app.post('/sendToCounselor', function(req, res) {
-//
-// });
+
+app.post('/postComment', function(req, res) {
+  // success flag
+  var commentAdded = false;
+  // read the posts file and save the text in a variable
+  var postsFile = fs.readFileSync('./data.json');
+  // convert the text to JSON
+  var postsObj = JSON.parse(postsFile);
+  // iterate over the posts and look for the post with the ID passed in
+  for(var i = 0; i < postsObj.posts.length; i++) {
+    if(postsObj.posts[i].id === req.body.id) {
+      // if the post is found, build a comment object to push
+      var commentObj = {
+        author: req.body.newComment.author,
+        comment: req.body.newComment.msg
+      };
+      postsObj.posts[i].comments.push(commentObj);
+      commentAdded = true;
+    }
+  }
+
+  postsFile = JSON.stringify(postsObj, null, 2);
+
+  fs.writeFileSync('./data.json', postsFile);
+
+  if(commentAdded) res.status(200).send("success");
+  else res.status(500).send("failure");
+});
+
+function buildUserObj(user) {
+  var userObj = {
+    username: user.username,
+    email: user.email,
+    college: user.college,
+    major: user.major
+  }
+
+  return userObj;
+}
 
 /** START SERVER **/
 http.createServer(app).listen(app.get('port'), function() {

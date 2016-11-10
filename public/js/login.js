@@ -1,10 +1,17 @@
 $(document).ready(function() {
+  var user = localStorage.getItem("user");
+
+  if(user && JSON.parse(user).stay) {
+      location.href = "/signed-in";
+  }
+
   $("ul.tabs").tabs();
   $("#collegeSel, #majorSel").material_select();
 
   $("#loginBtn").on("click", function login() {
-    var username = $("#lUsername");
-    var password = $("#lPassword");
+    var username  = $("#lUsername");
+    var password  = $("#lPassword");
+    var saveLogin = $("#lSaveLogin");
 
     var errors = false;
 
@@ -29,11 +36,14 @@ $(document).ready(function() {
       type: "POST",
       url: "/login",
       contentType: "application/json; charset=utf-8",
-      dataType: "text",
+      dataType: "json",
       data: JSON.stringify(loginObj),
       async: true,
       success: function(res) {
         console.log("User signed in");
+
+        res.stay = saveLogin.prop("checked");
+        localStorage.setItem("user", JSON.stringify(res));
         location.href="./signed-in";
       },
       error: function(err) {
@@ -51,6 +61,7 @@ $(document).ready(function() {
     var confLabel    = $("#confLabel");
     var college      = $("#collegeSel");
     var major        = $("#majorSel");
+    var saveLogin    = $("#sSaveLogin");
 
     var errors = false;
 
@@ -102,11 +113,14 @@ $(document).ready(function() {
       type: "POST",
       url: "/signup",
       contentType: "application/json; charset=utf-8",
-      dataType: "text",
+      dataType: "json",
       data: JSON.stringify(signupObj),
       async: true,
       success: function(res) {
         console.log("User signed up");
+
+        res.stay = saveLogin.prop("checked");
+        localStorage.setItem("user", JSON.stringify(res));
         location.href="./signed-in";
       },
       error: function(err) {

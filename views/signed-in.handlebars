@@ -30,7 +30,7 @@
         <ul class="collapsible popout" data-collapsible="accordion">
           {{#each posts}}
             {{#if this.date}}
-              <li class="post">
+              <li class="post" data-post-id="{{this.id}}">
                 <div class="collapsible-header">
                   <div class="row">
                     <div class="col l-half m1 s2">
@@ -71,11 +71,11 @@
                   </div>
                   <div class="container">
                     <div class="input-field row">
-                      <div class="col l11 m11 s8">
+                      <div class="col l11 m11 s9">
                         <label for="comment-reply">Reply</label>
                         <input id="vac-go-reply" class="vac-go-reply" type="text" name="comment-reply" />
                       </div>
-                      <div class="col l1 m1 s4 no-padding">
+                      <div class="col l1 m1 s3 no-padding">
                         <a class="waves-effect waves-green btn-flat comment-reply">
                           <i class="material-icons">send</i>
                         </a>

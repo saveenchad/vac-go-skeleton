@@ -177,6 +177,8 @@ $(document).ready(function() {
         quarterIcon: selQtrIcon,
         courses: postCourses,
         votes: 0,
+        upvoters: [],
+        downvoters: [],
         author: "user.name1",
         body: postBody.val(),
         comments: []
@@ -191,6 +193,7 @@ $(document).ready(function() {
         async: true,
         success: function(res) {
           console.log("Post successfully added");
+
           location.href="./signed-in";
         },
         error: function(err) {
