@@ -141,10 +141,12 @@ app.post('/addNewPost', function(req, res) {
   res.status(200).send("success");
 });
 
+// assume that req.body.id is the post id
 // app.post('/upvotePostById', function(req, res) {
 //
 // });
 
+// assume that req.body.id is the post id
 // app.post('/downvotePostById', function(req, res) {
 //
 // });
@@ -182,7 +184,8 @@ function buildUserObj(user) {
     username: user.username,
     email: user.email,
     college: user.college,
-    major: user.major
+    major: user.major,
+    id: user.id
   }
 
   return userObj;
