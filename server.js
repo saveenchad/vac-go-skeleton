@@ -1,5 +1,8 @@
-var PORT = 3000;
-var KEY = "Team Jingle Secret Key";
+/** constants **/
+var PORT       = 3000,
+    KEY        = "Team Jingle Secret Key",
+    DATA_JSON  = "./data.json",
+    USERS_JSON = "./users.json";
 
 var express    = require('express');
 var http       = require('http');
@@ -65,9 +68,34 @@ app.get('/getMajorsFile', index.getMajorsFile);
 app.get('/signed-in', index.signedIn);
 app.get('/counselor', index.counselor);
 
+app.post('/getVotedOnPosts', function(req, res) {
+  var upvoted = [];
+  var downvoted = [];
+
+  var postsFile = fs.readFileSync(DATA_JSON);
+
+  var postsArry = JSON.parse(postsFile).posts;
+
+  for(var i = 0; i < postsArry.length; i++) {
+    if(postsArry[i].upvoters.indexOf(req.body.userId) > -1) {
+      upvoted.push(postsArry[i].id);
+    }
+    if(postsArry[i].downvoters.indexOf(req.body.userId) > -1) {
+      downvoted.push(postsArry[i].id);
+    }
+  }
+
+  var retObj = {
+    upvoted: upvoted,
+    downvoted: downvoted
+  };
+
+  res.status(200).send(retObj);
+});
+
 app.post('/getVotersById', function(req, res) {
   // read the posts file and save the text in a variable
-  var postsFile = fs.readFileSync('./data.json');
+  var postsFile = fs.readFileSync(DATA_JSON);
   // convert the text to JSON
   var postsArry = JSON.parse(postsFile);
 
@@ -91,7 +119,7 @@ app.post('/getVotersById', function(req, res) {
 
 app.post('/login', function(req, res) {
   // read the users file and save the text in a variable
-  var usersFile = fs.readFileSync('./users.json');
+  var usersFile = fs.readFileSync(USERS_JSON);
   // convert the text to JSON
   var users = JSON.parse(usersFile).users;
   // loop through array
@@ -116,7 +144,7 @@ app.post('/login', function(req, res) {
 
 app.post('/signup', function(req, res) {
   // read the users file and store the text in a variable
-  var usersFile = fs.readFileSync('./users.json');
+  var usersFile = fs.readFileSync(USERS_JSON);
   // convert the text to JSON
   var usersArry = JSON.parse(usersFile);
   // generate and store a unique ID for the new user
@@ -128,7 +156,7 @@ app.post('/signup', function(req, res) {
   // convert the JSON back into text
   usersFile = JSON.stringify(usersArry, null, 2);
   // write the JSON to the file
-  fs.writeFileSync('./users.json', usersFile);
+  fs.writeFileSync(USERS_JSON, usersFile);
   // send a user object back to the client side
   var userObj = buildUserObj(req.body);
   // return success
@@ -139,7 +167,7 @@ app.post('/addNewPost', function(req, res) {
   // generate and store a unique ID with each post
   req.body.id = uuid.v4();
   // read the posts file and save the text in a variable
-  var postsFile = fs.readFileSync('./data.json');
+  var postsFile = fs.readFileSync(DATA_JSON);
   // convert the text to JSON
   var postsArry = JSON.parse(postsFile).posts;
   // add the new data to the JSON
@@ -147,14 +175,14 @@ app.post('/addNewPost', function(req, res) {
   // convert the JSON back into text
   postsFile = JSON.stringify(postsArry, null, 2);
   // write the text back into the file
-  fs.writeFileSync('./data.json', postsFile);
+  fs.writeFileSync(DATA_JSON, postsFile);
   // send a success to the frontend
   res.status(200).send("success");
 });
 
 app.post('/upvotePostById', function(req, res) {
   var upvoted = false, numVotes = 0;
-  var postsFile = fs.readFileSync('./data.json');
+  var postsFile = fs.readFileSync(DATA_JSON);
   var postsArry = JSON.parse(postsFile);
 
   for(var i = 0; i < postsArry.posts.length; i++) {
@@ -176,7 +204,7 @@ app.post('/upvotePostById', function(req, res) {
 
 app.post('/undoUpvoteById', function(req, res) {
   var upvoteUndone = false, numVotes;
-  var postsFile = fs.readFileSync('./data.json');
+  var postsFile = fs.readFileSync(DATA_JSON);
   var postsArry = JSON.parse(postsFile);
 
   for(var i = 0; i < postsArry.posts.length; i++) {
@@ -199,7 +227,7 @@ app.post('/undoUpvoteById', function(req, res) {
 
 app.post('/downvotePostById', function(req, res) {
   var downvoted = false, numVotes;
-  var postsFile = fs.readFileSync('./data.json');
+  var postsFile = fs.readFileSync(DATA_JSON);
   var postsArry = JSON.parse(postsFile);
 
   for(var i = 0; i < postsArry.posts.length; i++) {
@@ -221,7 +249,7 @@ app.post('/downvotePostById', function(req, res) {
 
 app.post('/undoDownvoteById', function(req, res) {
   var downvoteUndone = false, numVotes;
-  var postsFile = fs.readFileSync('./data.json');
+  var postsFile = fs.readFileSync(DATA_JSON);
   var postsArry =   JSON.parse(postsFile);
 
   for(var i = 0; i < postsArry.posts.length; i++) {
@@ -246,7 +274,7 @@ app.post('/postComment', function(req, res) {
   // success flag
   var commentAdded = false;
   // read the posts file and save the text in a variable
-  var postsFile = fs.readFileSync('./data.json');
+  var postsFile = fs.readFileSync(DATA_JSON);
   // convert the text to JSON
   var postsObj = JSON.parse(postsFile);
   // iterate over the posts and look for the post with the ID passed in
@@ -266,7 +294,7 @@ app.post('/postComment', function(req, res) {
 
   postsFile = JSON.stringify(postsObj, null, 2);
 
-  fs.writeFileSync('./data.json', postsFile);
+  fs.writeFileSync(DATA_JSON, postsFile);
 
   if(commentAdded) res.status(200).send("success");
   else res.status(500).send("failure");

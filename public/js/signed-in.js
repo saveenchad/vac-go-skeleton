@@ -5,6 +5,30 @@ $(document).ready(function() {
     location.href = "./";
   } else {
     $("#username").html(USER.username);
+
+    $.ajax({
+      type: "POST",
+      url: "/getVotedOnPosts",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      data: JSON.stringify({userId: USER.id}),
+      async: true,
+      success: function(res) {
+        for(var i = 0; i < res.upvoted.length; i++) {
+          var post = $("li[data-post-id=" + res.upvoted[i] + "]");
+          post.find(".upvote").addClass("upvoted");
+          post.find(".votes").addClass("upvoted");
+        }
+        for(var i = 0; i < res.downvoted.length; i++) {
+          var post = $("li[data-post-id=" + res.downvoted[i] + "]");
+          post.find(".downvote").addClass("downvoted");
+          post.find(".votes").addClass("downvoted");
+        }
+      },
+      error: function(err) {
+        console.log("Failed to load up/downvoted posts");
+      }
+    });
   }
 
   function upvote(postId, userId, post) {

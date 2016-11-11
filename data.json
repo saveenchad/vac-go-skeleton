@@ -87,8 +87,10 @@
           "courseName": "CSE 198"
         }
       ],
-      "votes": 8,
-      "upvoters": [],
+      "votes": 9,
+      "upvoters": [
+        "0dc2bd6a-5020-4546-a98e-f241ff69f337"
+      ],
       "downvoters": [],
       "author": "user.name2",
       "body": "This is the body of the post",
@@ -294,8 +296,10 @@
           "courseName": "CSE 140L"
         }
       ],
-      "votes": 5,
-      "upvoters": [],
+      "votes": 6,
+      "upvoters": [
+        "0dc2bd6a-5020-4546-a98e-f241ff69f337"
+      ],
       "downvoters": [],
       "author": "user.name2",
       "body": "This is the body of the post",
@@ -317,8 +321,10 @@
           "activityTime": "+6"
         }
       ],
-      "votes": 0,
-      "upvoters": [],
+      "votes": 1,
+      "upvoters": [
+        "0dc2bd6a-5020-4546-a98e-f241ff69f337"
+      ],
       "downvoters": [],
       "author": "user.name1",
       "body": "this is a test post",
