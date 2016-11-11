@@ -66,7 +66,11 @@
                   <p><span class="vac-go-post-author">{{this.author}} - </span>{{this.body}}</p>
                   <div id="comments" class="vac-go-comments">
                     {{#each this.comments}}
-                      <blockquote><span class="vac-go-comment-author">{{this.author}}: </span>{{this.comment}}</blockquote>
+                      <blockquote>
+                        <span class="vac-go-comment-author">{{this.author}}: </span>
+                        {{this.comment}}
+                        <span class="right grey-text">{{date this.date}}</span>
+                      </blockquote>
                     {{/each}}
                   </div>
                   <div class="container">
@@ -131,7 +135,11 @@
                   <p><span class="vac-go-post-author">{{this.author}} - </span>{{this.body}}</p>
                   <div id="comments" class="vac-go-comments">
                     {{#each this.comments}}
-                      <blockquote><span class="vac-go-comment-author">{{this.author}}: </span>{{this.comment}}</blockquote>
+                      <blockquote>
+                        <span class="vac-go-comment-author">{{this.author}}: </span>
+                        {{this.comment}}
+                        <span class="right grey-text">{{date this.date}}</span>
+                      </blockquote>
                     {{/each}}
                   </div>
                   <div class="container">

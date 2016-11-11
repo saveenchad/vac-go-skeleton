@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  var USER = JSON.parse(localStorage.getItem("user"));
   $(".collapsible-header .btn-small.upvote").click(function(e) {
     e.stopPropagation();
   });
@@ -8,13 +9,40 @@ $(document).ready(function() {
   });
 
   $(".comment-reply").click(function(e) {
-    var newComment = $(this).prev().val();
-    if(newComment.length === 0) return;
+    var input = $(this).parent().prev().children("input");
+    var postId = $(this).parents("li.post").attr("data-post-id");
+    var newComment = input.val();
+    var self = $(this);
 
-    var comments = $(this).parent().parent().parent().prev();
+    if(newComment.length === 0) {
+      Materialize.toast("Please enter some text to comment!", 4000);
+      return;
+    };
 
-    comments.append("<blockquote><span class='vac-go-comment-author'>user.name1</span>: " + newComment + "</blockquote>");
-    $(this).prev().val("");
+    var commentObj = {
+      id: postId,
+      newComment: {
+        author: USER.username,
+        msg: newComment
+      }
+    };
+
+    $.ajax({
+      type: "POST",
+      url: "/postComment",
+      contentType: "application/json; charset=utf-8",
+      dataType: "text",
+      data: JSON.stringify(commentObj),
+      async: true,
+      success: function(res) {
+        var comments = self.parent().parent().parent().prev();
+        comments.append("<blockquote><span class='vac-go-comment-author'>" + USER.username + ":</span> " + newComment + "</blockquote>");
+        input.val("");
+      },
+      error: function(err) {
+        Materialize.toast("Failed to add comment, please try again!", 5000);
+      }
+    });
   });
 
   $("#send").click(function(e) {

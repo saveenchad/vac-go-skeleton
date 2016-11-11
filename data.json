@@ -24,14 +24,17 @@
       "body": "This is the body of the post",
       "comments": [
         {
+          "date": 1478828521008,
           "author": "user.name2",
           "comment": "Can't go wrong with this schedule!"
         },
         {
+          "date": 1478829121008,
           "author": "user.name5",
           "comment": "I thook these courses. Definitely do-able"
         },
         {
+          "date": 1478829361008,
           "author": "user.name1",
           "comment": "Thanks guys!"
         }

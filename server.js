@@ -9,6 +9,7 @@ var handlebars = require('express-handlebars');
 var fs         = require('fs');
 var uuid       = require('node-uuid');
 var crypto     = require('crypto-js');
+var df         = require('dateformat');
 
 var index      = require('./routes/index.js');
 
@@ -27,6 +28,9 @@ app.engine('handlebars', handlebars({
     },
     toJSON: function(obj) {
       return JSON.stringify(obj);
+    },
+    date: function(a) {
+      return df(a, "mm/dd h:MM TT")
     }
   }
 }));
@@ -170,6 +174,7 @@ app.post('/postComment', function(req, res) {
     if(postsObj.posts[i].id === req.body.id) {
       // if the post is found, build a comment object to push
       var commentObj = {
+        date: Date.now(),
         author: req.body.newComment.author,
         comment: req.body.newComment.msg
       };
