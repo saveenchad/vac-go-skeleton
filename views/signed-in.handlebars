@@ -38,8 +38,8 @@
                     </div>
                     <div class="col l-half m1 hide-on-small-only">
                       <form action="#">
-                        <input type="checkbox" id="sel" />
-                        <label for="sel"></label>
+                        <input type="checkbox" id="{{this.id}}" />
+                        <label for="{{this.id}}"></label>
                       </form>
                     </div>
                     <div class="col l9 m6 s8 truncate">
@@ -99,7 +99,7 @@
           {{#each posts}}
             {{#if this.date}}
             {{else}}
-              <li class="post">
+              <li class="post" data-post-id="{{this.id}}">
                 <div class="collapsible-header">
                   <div class="row">
                     <div class="col l-half m1 s2">
@@ -107,8 +107,8 @@
                     </div>
                     <div class="col l-half m1 hide-on-small-only">
                       <form action="#">
-                        <input type="checkbox" id="sel" />
-                        <label for="sel"></label>
+                        <input type="checkbox" id="{{this.id}}" />
+                        <label for="{{this.id}}"></label>
                       </form>
                     </div>
                     <div class="col l9 m6 s8 truncate">

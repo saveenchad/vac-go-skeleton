@@ -192,8 +192,6 @@ $(document).ready(function() {
         data: JSON.stringify(post),
         async: true,
         success: function(res) {
-          console.log("Post successfully added");
-
           location.href="./signed-in";
         },
         error: function(err) {

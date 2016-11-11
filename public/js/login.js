@@ -40,15 +40,12 @@ $(document).ready(function() {
       data: JSON.stringify(loginObj),
       async: true,
       success: function(res) {
-        console.log("User signed in");
-
         res.stay = saveLogin.prop("checked");
         localStorage.setItem("user", JSON.stringify(res));
         location.href="./signed-in";
       },
       error: function(err) {
         Materialize.toast("Login failed! Please check your username and password and try again", 5000);
-        console.log("Login failed!");
       }
     });
   });
@@ -117,15 +114,12 @@ $(document).ready(function() {
       data: JSON.stringify(signupObj),
       async: true,
       success: function(res) {
-        console.log("User signed up");
-
         res.stay = saveLogin.prop("checked");
         localStorage.setItem("user", JSON.stringify(res));
         location.href="./signed-in";
       },
       error: function(err) {
         Materialize.toast("Signup failed! Please check your inputs and try again", 5000);
-        console.log("Signup failed!");
       }
     });
   });

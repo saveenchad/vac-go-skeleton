@@ -71,6 +71,14 @@ span.badge.votes {
   padding: 0;
 }
 
+.upvoted {
+  color: orange !important;
+}
+
+.downvoted {
+  color: purple !important;
+}
+
 span.badge[data-badge-caption] {
   text-transform: uppercase;
 }

@@ -1,12 +1,113 @@
 $(document).ready(function() {
   var USER = JSON.parse(localStorage.getItem("user"));
-  $(".collapsible-header .btn-small.upvote").click(function(e) {
-    e.stopPropagation();
-  });
 
-  $(".collapsible-header .btn-small.downvote").click(function(e) {
-    e.stopPropagation();
-  });
+  function upvote(postId, userId, post) {
+    var voteObj = {
+      userId: userId, post,
+      postId: postId
+    };
+
+    $.ajax({
+      type: "POST",
+      url: "/upvotePostById",
+      contentType: "application/json; charset=utf-8",
+      dataType: "text",
+      data: JSON.stringify(voteObj),
+      async: true,
+      success: function(res) {
+        post.siblings(".votes").html(res).addClass("upvoted");
+        if(post.hasClass("upvote")) {
+          post.addClass("upvoted");
+        } else {
+          post.siblings(".upvote").addClass("upvoted");
+        }
+      },
+      error: function(err) {
+        Materialize.toast("Error while upvoting post. Please try again", 4000);
+      }
+    });
+  };
+
+  function undoUpvote(postId, userId, post) {
+    var voteObj = {
+      userId: userId,
+      postId: postId
+    };
+
+    $.ajax({
+      type: "POST",
+      url: "/undoUpvoteById",
+      contentType: "application/json; charset=utf-8",
+      dataType: "text",
+      data: JSON.stringify(voteObj),
+      async: true,
+      success: function(res) {
+        post.siblings(".votes").html(res).removeClass("upvoted");
+        if(post.hasClass("upvote")) {
+          post.removeClass("upvoted");
+        } else {
+          post.siblings(".upvote").removeClass("upvoted");
+        }
+      },
+      error: function(err) {
+        Materialize.toast("Error while undoing upvote. Please try again", 4000);
+      }
+    });
+  };
+
+  function downvote(postId, userId, post) {
+    var voteObj = {
+      userId: userId,
+      postId: postId
+    };
+
+    $.ajax({
+      type: "POST",
+      url: "/downvotePostById",
+      contentType: "application/json; charset=utf-8",
+      dataType: "text",
+      data: JSON.stringify(voteObj),
+      async: true,
+      success: function(res) {
+        post.siblings(".votes").html(res).addClass("downvoted");
+        if(post.hasClass("downvote")) {
+          post.addClass("downvoted");
+        } else {
+          post.siblings(".downvote").addClass("downvoted");
+        }
+      },
+      error: function(err) {
+        Materialize.toast("Error while downvoting post. Please try again", 4000);
+      }
+    });
+  };
+
+  function undoDownvote(postId, userId, post) {
+    var voteObj = {
+      userId: userId,
+      postId: postId
+    };
+
+    $.ajax({
+      type: "POST",
+      url: "/undoDownvoteById",
+      contentType: "application/json; charset=utf-8",
+      dataType: "text",
+      data: JSON.stringify(voteObj),
+      async: true,
+      success: function(res) {
+        post.siblings(".votes").html(res).removeClass("downvoted");
+        if(post.hasClass("downvote")) {
+          post.removeClass("downvoted");
+        } else {
+          post.siblings(".downvote").removeClass("downvoted");
+        }
+      },
+      error: function(err) {
+        Materialize.toast("Error while undoing downvote. Please try again", 4000);
+      }
+    });
+  };
 
   $(".comment-reply").click(function(e) {
     var input = $(this).parent().prev().children("input");
@@ -69,29 +170,28 @@ $(document).ready(function() {
     }
   });
 
-  $(".upvote").click(function() {
-    $(this).parents("li.post").attr("data-post-id");
-    var user = JSON.parse(localStorage.getItem("user"))
+  $(".upvote").click(function(e) {
+    e.stopPropagation();
+
+    var post = $(this);
+    var postId = post.parents("li.post").attr("data-post-id");
+
     $.ajax({
       type: "POST",
       url: "/getVotersById",
       contentType: "application/json; charset=utf-8",
       dataType: "json",
-      data: JSON.stringify({id: user.id}),
+      data: JSON.stringify({id: postId}),
       async: true,
       success: function(res) {
-        console.log(res);
-        if (res.upvoters.length > 0) {
-          if (res.upvoters.indexof(user.id) > -1) {
-            /* call downvote */
-          }
-          else {
-            /* call upvote*/
-          }
+        if(res.downvoters.indexOf(USER.id) > -1) {
+          undoDownvote(postId, USER.id, post);
         }
-        else {
 
-          /* call upvote */
+        if (res.upvoters.indexOf(USER.id) > -1) {
+          undoUpvote(postId, USER.id, post);
+        } else {
+          upvote(postId, USER.id, post);
         }
       },
       error: function(err) {
@@ -101,34 +201,33 @@ $(document).ready(function() {
 
   });
 
-  $(".downvote").click(function() {
-    $(this).parents("li.pot").attr("data-post-id");
-  $.ajax({
+  $(".downvote").click(function(e) {
+    e.stopPropagation();
+
+    var post   = $(this);
+    var postId = post.parents("li.post").attr("data-post-id");
+
+    $.ajax({
       type: "POST",
       url: "/getVotersById",
       contentType: "application/json; charset=utf-8",
       dataType: "json",
-      data: JSON.stringify({id: user.id}),
+      data: JSON.stringify({id: postId}),
       async: true,
       success: function(res) {
-        console.log(res);
-        if (res.upvoters.length > 0) {
-          if (res.upvoters.indexof(user.id) > -1) {
-            /* call upvote */
-          }
-          else {
-            /* call downvote*/
-          }
+        if(res.upvoters.indexOf(USER.id) > -1) {
+          undoUpvote(postId, USER.id, post);
         }
-        else {
 
-          /* call downvote */
+        if (res.downvoters.indexOf(USER.id) > -1) {
+          undoDownvote(postId, USER.id, post);
+        } else {
+          downvote(postId, USER.id, post);
         }
       },
       error: function(err) {
         console.log(err);
       }
     });
-
   });
 });

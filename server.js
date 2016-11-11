@@ -62,16 +62,15 @@ app.post('/getVotersById', function(req, res) {
   // read the posts file and save the text in a variable
   var postsFile = fs.readFileSync('./data.json');
   // convert the text to JSON
-  var postsArry = JSON.parse(postsFile).posts;
+  var postsArry = JSON.parse(postsFile);
 
   // iterate over posts to find the post that matches the ID passed in
-  for(var i = 0; i < postsArry.length; i++) {
-    if(postsArry[i].id = req.body.id) {
-      console.log("post found");
+  for(var i = 0; i < postsArry.posts.length; i++) {
+    if(postsArry.posts[i].id === req.body.id) {
       // build an object with the data to return
       var retObj = {
-        upvoters: postsArry[i].upvoters,
-        downvoters: postsArry[i].downvoters
+        upvoters: postsArry.posts[i].upvoters,
+        downvoters: postsArry.posts[i].downvoters
       };
       // return the object to the frontend
       res.status(200).send(retObj);
@@ -147,20 +146,94 @@ app.post('/addNewPost', function(req, res) {
 });
 
 app.post('/upvotePostById', function(req, res) {
+  var upvoted = false, numVotes = 0;
   var postsFile = fs.readFileSync('./data.json');
   var postsArry = JSON.parse(postsFile);
+
   for(var i = 0; i < postsArry.posts.length; i++) {
     if(postsArry.posts[i].id === req.body.postId) {
       postsArry.posts[i].votes++;
       postsArry.posts[i].upvoters.push(req.body.userId);
+      upvoted = true;
+      numVotes = postsArry.posts[i].votes;
+      break;
     }
   }
+
+  postsFile = JSON.stringify(postsArry, null, 2);
+  fs.writeFileSync("./data.json", postsFile);
+
+  if(upvoted) res.status(200).send("" + numVotes);
+  else res.status(500).send("failure");
 });
 
-// assume that req.body.id is the post id
-// app.post('/downvotePostById', function(req, res) {
-//
-// });
+app.post('/undoUpvoteById', function(req, res) {
+  var upvoteUndone = false, numVotes;
+  var postsFile = fs.readFileSync('./data.json');
+  var postsArry = JSON.parse(postsFile);
+
+  for(var i = 0; i < postsArry.posts.length; i++) {
+    if(postsArry.posts[i].id === req.body.postId) {
+      postsArry.posts[i].votes--;
+      var userIndex = postsArry.posts[i].upvoters.indexOf(req.body.userId);
+      postsArry.posts[i].upvoters.splice(userIndex, 1);
+      upvoteUndone = true;
+      numVotes = postsArry.posts[i].votes;
+      break;
+    }
+  }
+
+  postsFile = JSON.stringify(postsArry, null, 2);
+  fs.writeFileSync("./data.json", postsFile);
+
+  if(upvoteUndone) res.status(200).send("" + numVotes);
+  else res.status(500).send("failure");
+});
+
+app.post('/downvotePostById', function(req, res) {
+  var downvoted = false, numVotes;
+  var postsFile = fs.readFileSync('./data.json');
+  var postsArry = JSON.parse(postsFile);
+
+  for(var i = 0; i < postsArry.posts.length; i++) {
+    if(postsArry.posts[i].id === req.body.postId) {
+      postsArry.posts[i].votes--;
+      postsArry.posts[i].downvoters.push(req.body.userId);
+      downvoted = true;
+      numVotes = postsArry.posts[i].votes;
+      break;
+    }
+  }
+
+  postsFile = JSON.stringify(postsArry, null, 2);
+  fs.writeFileSync("./data.json", postsFile);
+
+  if(downvoted) res.status(200).send("" + numVotes);
+  else res.status(500).send("failure");
+});
+
+app.post('/undoDownvoteById', function(req, res) {
+  var downvoteUndone = false, numVotes;
+  var postsFile = fs.readFileSync('./data.json');
+  var postsArry =   JSON.parse(postsFile);
+
+  for(var i = 0; i < postsArry.posts.length; i++) {
+    if(postsArry.posts[i].id === req.body.postId) {
+      postsArry.posts[i].votes++;
+      var userIndex = postsArry.posts[i].downvoters.indexOf(req.body.userId);
+      postsArry.posts[i].downvoters.splice(userIndex, 1);
+      downvoteUndone = true;
+      numVotes = postsArry.posts[i].votes;
+      break;
+    }
+  }
+
+  postsFile = JSON.stringify(postsArry, null, 2);
+  fs.writeFileSync("./data.json", postsFile);
+
+  if(downvoteUndone) res.status(200).send("" + numVotes);
+  else res.status(500).send("failure");
+});
 
 app.post('/postComment', function(req, res) {
   // success flag
@@ -180,6 +253,7 @@ app.post('/postComment', function(req, res) {
       };
       postsObj.posts[i].comments.push(commentObj);
       commentAdded = true;
+      break;
     }
   }
 
