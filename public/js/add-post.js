@@ -47,6 +47,8 @@ $(document).ready(function() {
 
   if(!USER) {
     location.href = "./";
+  } else {
+    $("#username").html(USER.username);
   }
 
   $.get('/getMajorsFile', function(res) {

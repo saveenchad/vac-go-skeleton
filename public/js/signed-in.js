@@ -3,6 +3,8 @@ $(document).ready(function() {
 
   if(!USER) {
     location.href = "./";
+  } else {
+    $("#username").html(USER.username);
   }
 
   function upvote(postId, userId, post) {

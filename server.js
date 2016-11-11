@@ -26,11 +26,18 @@ app.engine('handlebars', handlebars({
         return opts.inverse(this);
       }
     },
-    toJSON: function(obj) {
-      return JSON.stringify(obj);
-    },
     date: function(a) {
       return df(a, "mm/dd h:MM TT")
+    },
+    isToday: function(a, opts) {
+      var today = new Date();
+      today = today.setHours(0,0,0,0);
+
+      if(a >= today) {
+        return opts.fn(this);
+      } else {
+        return opts.inverse(this);
+      }
     }
   }
 }));

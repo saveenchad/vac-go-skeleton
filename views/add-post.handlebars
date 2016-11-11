@@ -19,7 +19,7 @@
             <li><a class="logoutBtn">Logout</a></li>
           </ul>
           <ul class="left">
-            <li class="vac-go-welcome">Welcome, <b>user.name1</b>!</li>
+            <li class="vac-go-welcome">Welcome, <b id="username"></b>!</li>
           </ul>
         </div>
       </nav>
@@ -93,31 +93,17 @@
                     <i class="material-icons">delete</i>
                   </div>
                 </div>
+                
               </form>
             </div>
             <div class="card-action">
-              <button id="submit-post" class="waves-effect waves-green btn-flat right">Submit</button>
-              <a href="/signed-in" class="btn waves-effect waves-red btn-flat right">Cancel</a>
+              <button id="addActivity" onclick="addActivity()" class="waves-effect waves-light btn-flat left col l2 m2 s6">Add Activity</button>
+              <button id="addCourse" onclick="addCourse()" class="waves-effect waves-light btn-flat left col l2 m2 s6">Add Course</button>
+              <button id="submit-post" class="waves-effect waves-green btn-flat right col l2 m2 s6">Submit</button>
+              <a href="/signed-in" class="btn waves-effect waves-red btn-flat right col l2 m2 s6">Cancel</a>
             </div>
           </div>
         </div>
-      </div>
-      <div class="fixed-action-btn vertical">
-        <a class="btn-floating btn-large blue">
-          <i class="large material-icons">add</i>
-        </a>
-        <ul>
-          <li onclick="addCourse()">
-            <a class="btn-floating red tooltipped" data-position="left" data-tooltip="Add Course">
-              <i class="material-icons">school</i>
-            </a>
-          </li>
-          <li onclick="addActivity()">
-            <a class="btn-floating green tooltipped" data-position="left" data-tooltip="Add Activity">
-              <i class="material-icons">business_center</i>
-            </a>
-          </li>
-        </ul>
       </div>
     </div>
 

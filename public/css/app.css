@@ -143,6 +143,10 @@ span.badge[data-badge-caption] {
   overflow: visible;
 }
 
+#body.row {
+  margin-bottom: 60px;
+}
+
 #add-post-card-large .card-action {
   padding: 10px;
 }
