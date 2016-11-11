@@ -1,7 +1,7 @@
 $(document).ready(function() {
-  var user = localStorage.getItem("user");
+  var USER = JSON.parse(localStorage.getItem("user"));
 
-  if(user && JSON.parse(user).stay) {
+  if(USER && USER.stay) {
       location.href = "/signed-in";
   }
 

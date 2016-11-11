@@ -1,6 +1,10 @@
 $(document).ready(function() {
   var USER = JSON.parse(localStorage.getItem("user"));
 
+  if(!USER) {
+    location.href = "./";
+  }
+
   function upvote(postId, userId, post) {
     var voteObj = {
       userId: userId, post,
@@ -108,6 +112,11 @@ $(document).ready(function() {
       }
     });
   };
+
+  $(".logoutBtn").on("click", function() {
+    localStorage.removeItem("user");
+    location.href="./";
+  });
 
   $(".comment-reply").click(function(e) {
     var input = $(this).parent().prev().children("input");

@@ -43,6 +43,12 @@ function addActivity() {
 };
 
 $(document).ready(function() {
+  var USER = JSON.parse(localStorage.getItem("user"));
+
+  if(!USER) {
+    location.href = "./";
+  }
+
   $.get('/getMajorsFile', function(res) {
     majors = res.majors;
 
@@ -199,5 +205,10 @@ $(document).ready(function() {
           console.log(err);
         }
       });
+    });
+
+    $(".logoutBtn").on("click", function() {
+      localStorage.removeItem("user");
+      location.href="./";
     });
 });
