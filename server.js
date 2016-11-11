@@ -63,6 +63,7 @@ app.post('/getVotersById', function(req, res) {
   // iterate over posts to find the post that matches the ID passed in
   for(var i = 0; i < postsArry.length; i++) {
     if(postsArry[i].id = req.body.id) {
+      console.log("post found");
       // build an object with the data to return
       var retObj = {
         upvoters: postsArry[i].upvoters,
@@ -141,10 +142,16 @@ app.post('/addNewPost', function(req, res) {
   res.status(200).send("success");
 });
 
-// assume that req.body.id is the post id
-// app.post('/upvotePostById', function(req, res) {
-//
-// });
+app.post('/upvotePostById', function(req, res) {
+  var postsFile = fs.readFileSync('./data.json');
+  var postsArry = JSON.parse(postsFile);
+  for(var i = 0; i < postsArry.posts.length; i++) {
+    if(postsArry.posts[i].id === req.body.postId) {
+      postsArry.posts[i].votes++;
+      postsArry.posts[i].upvoters.push(req.body.userId);
+    }
+  }
+});
 
 // assume that req.body.id is the post id
 // app.post('/downvotePostById', function(req, res) {

@@ -40,4 +40,67 @@ $(document).ready(function() {
       Materialize.toast('Please select at least one course plan to send!', 4000)
     }
   });
+
+  $(".upvote").click(function() {
+    $(this).parents("li.post").attr("data-post-id");
+    var user = JSON.parse(localStorage.getItem("user"))
+    $.ajax({
+      type: "POST",
+      url: "/getVotersById",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      data: JSON.stringify({id: user.id}),
+      async: true,
+      success: function(res) {
+        console.log(res);
+        if (res.upvoters.length > 0) {
+          if (res.upvoters.indexof(user.id) > -1) {
+            /* call downvote */
+          }
+          else {
+            /* call upvote*/
+          }
+        }
+        else {
+
+          /* call upvote */
+        }
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    });
+
+  });
+
+  $(".downvote").click(function() {
+    $(this).parents("li.pot").attr("data-post-id");
+  $.ajax({
+      type: "POST",
+      url: "/getVotersById",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      data: JSON.stringify({id: user.id}),
+      async: true,
+      success: function(res) {
+        console.log(res);
+        if (res.upvoters.length > 0) {
+          if (res.upvoters.indexof(user.id) > -1) {
+            /* call upvote */
+          }
+          else {
+            /* call downvote*/
+          }
+        }
+        else {
+
+          /* call downvote */
+        }
+      },
+      error: function(err) {
+        console.log(err);
+      }
+    });
+
+  });
 });
