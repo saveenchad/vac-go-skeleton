@@ -163,6 +163,7 @@ $(document).ready(function() {
     var commentObj = {
       id: postId,
       newComment: {
+        date: Date.now(),
         author: USER.username,
         msg: newComment
       }

@@ -280,13 +280,7 @@ app.post('/postComment', function(req, res) {
   // iterate over the posts and look for the post with the ID passed in
   for(var i = 0; i < postsObj.posts.length; i++) {
     if(postsObj.posts[i].id === req.body.id) {
-      // if the post is found, build a comment object to push
-      var commentObj = {
-        date: Date.now(),
-        author: req.body.newComment.author,
-        comment: req.body.newComment.msg
-      };
-      postsObj.posts[i].comments.push(commentObj);
+      postsObj.posts[i].comments.push(req.body.newComment);
       commentAdded = true;
       break;
     }

@@ -187,7 +187,7 @@ $(document).ready(function() {
         votes: 0,
         upvoters: [],
         downvoters: [],
-        author: "user.name1",
+        author: USER.username,
         body: postBody.val(),
         comments: []
       }
