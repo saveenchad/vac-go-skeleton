@@ -169,9 +169,9 @@ app.post('/addNewPost', function(req, res) {
   // read the posts file and save the text in a variable
   var postsFile = fs.readFileSync(DATA_JSON);
   // convert the text to JSON
-  var postsArry = JSON.parse(postsFile).posts;
+  var postsArry = JSON.parse(postsFile);
   // add the new data to the JSON
-  postsArry.push(req.body);
+  postsArry.posts.push(req.body);
   // convert the JSON back into text
   postsFile = JSON.stringify(postsArry, null, 2);
   // write the text back into the file
