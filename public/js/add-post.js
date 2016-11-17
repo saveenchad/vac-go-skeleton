@@ -110,12 +110,12 @@ $(document).ready(function() {
       }
 
       if(!courses.length && !activities.length) {
-        Materialize.toast("Please add at least one course or activity!", 4000);
+        Materialize.toast("Please add at least one course or activity!", 4025);
         errors = true;
       }
 
       if(!postBody.val().length) {
-        Materialize.toast("Please add an explanation for your courses and/or activities", 4000);
+        Materialize.toast("Please explain your course plan in the post body section!", 4050);
         errors = true;
       }
 

@@ -300,6 +300,27 @@ app.post('/postComment', function(req, res) {
   else res.status(500).send("failure");
 });
 
+app.post('/getCourseListByPostId', function(req, res) {
+  var postsFile = fs.readFileSync(DATA_JSON);
+
+  var postsArry = JSON.parse(postsFile).posts;
+
+  var retObj = [];
+
+  for(var i = 0; i < postsArry.length; i++) {
+    for(var j = 0; j < req.body.length; j++) {
+      if(postsArry[i].id === req.body[j]){
+        retObj.push({
+          quarter: postsArry[i].quarter,
+          courses: postsArry[i].courses
+        });
+      }
+    }
+  }
+
+  res.status(200).send(retObj);
+});
+
 function buildUserObj(user) {
   var userObj = {
     username: user.username,

@@ -38,11 +38,11 @@
                     </div>
                     <div class="col l-half m1 hide-on-small-only">
                       <form action="#">
-                        <input type="checkbox" id="{{this.id}}" />
+                        <input type="checkbox" id="{{this.id}}" class="post-select"/>
                         <label for="{{this.id}}"></label>
                       </form>
                     </div>
-                    <div class="col l9 m6 s8 truncate">
+                    <div class="col l9 m6 s6 truncate">
                       {{#each this.courses}}
                         {{#if this.courseName}}
                           <span class="new badge course" data-badge-caption="{{this.courseName}}"></span>
@@ -51,7 +51,7 @@
                         {{/if}}
                       {{/each}}
                     </div>
-                    <div class="col l2 m4 s2">
+                    <div class="col l2 m4 s4">
                       <span class="btn-flat btn-small waves-effect waves-purple downvote grey-text right hide-on-small-only">
                         <i class="material-icons">arrow_downward</i>
                       </span>
@@ -69,7 +69,7 @@
                       <blockquote>
                         <span class="vac-go-comment-author">{{this.author}}: </span>
                         {{this.comment}}
-                        <span class="right grey-text">{{date this.date}}</span>
+                        <span class="right grey-text hide-on-small-only">{{date this.date}}</span>
                       </blockquote>
                     {{/each}}
                   </div>
@@ -107,7 +107,7 @@
                     </div>
                     <div class="col l-half m1 hide-on-small-only">
                       <form action="#">
-                        <input type="checkbox" id="{{this.id}}" />
+                        <input type="checkbox" id="{{this.id}}" class="post-select"/>
                         <label for="{{this.id}}"></label>
                       </form>
                     </div>
@@ -138,7 +138,7 @@
                       <blockquote>
                         <span class="vac-go-comment-author">{{this.author}}: </span>
                         {{this.comment}}
-                        <span class="right grey-text">{{date this.date}}</span>
+                        <span class="right grey-text hide-on-small-only">{{date this.date}}</span>
                       </blockquote>
                     {{/each}}
                   </div>
@@ -226,11 +226,11 @@
               <i class="material-icons">reply</i>
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a id="sendUrgent" class="btn-floating green darken-1 tooltipped" data-position="left" data-tooltip="[Urgent Response] Send to Counselor">
               <i class="material-icons">reply_all</i>
             </a>
-          </li>
+          </li> -->
           <li>
             <a href="./add" class="btn-floating red lighten-1 modal-trigger tooltipped" data-position="left" data-tooltip="Add a New Post">
               <i class="material-icons">add</i>

@@ -31,6 +31,11 @@ $(document).ready(function() {
     });
   }
 
+  $('.dropdown-btn').dropdown({
+      stopPropagation: true
+    }
+  );
+
   function upvote(postId, userId, post) {
     var voteObj = {
       userId: userId, post,
@@ -182,28 +187,62 @@ $(document).ready(function() {
   });
 
   $("#send").click(function(e) {
-    if($("#sel:checked").length) {
-      var link = "mailto:counselor@ucsd.edu"
-               + "?subject=" + escape("[VAC-Go] Course plan review")
-               + "&body=" + escape("Please review my course plan:\n\nCSE 12\nCSE 15L\nCSE20\n\nThank you!\n");
+    var postsSelected = $(".post-select:checked");
+    if(postsSelected.length) {
+      var selPostIds = [];
 
-      location.href = link;
+      for(var i = 0; i < postsSelected.length; i++) {
+        selPostIds.push(postsSelected[i].id);
+      }
+
+      $.ajax({
+        type: "POST",
+        url: "/getCourseListByPostId",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: JSON.stringify(selPostIds),
+        async: true,
+        success: function(res) {
+          var strCoursePlan = "";
+
+          for(var i = 0; i < res.length; i++) {
+            if(i === 0) {
+              strCoursePlan += "Please review my course plan for " + res[i].quarter + " quarter:\n\n";
+            } else {
+              strCoursePlan += "\nAnd also for " + res[i].quarter + " quarter:\n\n";
+            }
+            for(var j = 0; j < res[i].courses.length; j++) {
+              strCoursePlan += (res[i].courses[j].courseName + "\n");
+            }
+          }
+          strCoursePlan += "\nThank you!\n\n";
+
+          var link = "mailto:counselor@ucsd.edu"
+                   + "?subject=" + escape("[VAC-Go] Course plan review")
+                   + "&body=" + escape(strCoursePlan);
+
+          location.href = link;
+        },
+        error: function(err) {
+          Materialize.toast("Failed to find course list of post(s)!", 5000);
+        }
+      });
     } else {
       Materialize.toast('Please select at least one course plan to send!', 4000)
     }
   });
 
-  $("#sendUrgent").click(function(e) {
-    if($("#sel:checked").length) {
-      var link = "mailto:counselor@ucsd.edu"
-               + "?subject=" + escape("[URGENT] [VAC-Go] PreReq Clearance")
-               + "&body=" + escape("Can I get cleared for CSE 110? I really want to take it and my first pass is in an hour!\n\nThank you!\n");
-
-      location.href = link;
-    } else {
-      Materialize.toast('Please select at least one course plan to send!', 4000)
-    }
-  });
+  // $("#sendUrgent").click(function(e) {
+  //   if($(".post-select:checked").length) {
+  //     var link = "mailto:counselor@ucsd.edu"
+  //              + "?subject=" + escape("[URGENT] [VAC-Go] PreReq Clearance")
+  //              + "&body=" + escape("Can I get cleared for CSE 110? I really want to take it and my first pass is in an hour!\n\nThank you!\n");
+  //
+  //     location.href = link;
+  //   } else {
+  //     Materialize.toast('Please select at least one course plan to send!', 4000)
+  //   }
+  // });
 
   $(".upvote").click(function(e) {
     e.stopPropagation();
