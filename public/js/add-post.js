@@ -98,8 +98,8 @@ $(document).ready(function() {
       var post        = {}, postCourses = [];
       var selQuarter  = $("input[name='quarter']:checked").attr("id");
       var selQtrIcon  = null;
-      var courses     = $("#courses").children();
-      var activities  = $("#activities").children();
+      var courses     = $("#courses").children(".course.row");
+      var activities  = $("#activities").children(".activity.row");
       var postBody    = $("#post-body");
       var errors      = false;
 
