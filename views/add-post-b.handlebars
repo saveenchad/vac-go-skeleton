@@ -54,12 +54,18 @@
                 </div>
                 <div id="courses">
                   <h6 class="vac-go-bold">Courses:</h6>
+                  <button type="button" id="addCourse" class="waves-effect waves-light btn-flat">
+                    Add Course
+                  </button>
                 </div>
                 <div id="activities">
                   <h6 class="vac-go-bold">Activities:</h6>
+                  <button type="button" id="addActivity" class="waves-effect waves-light btn-flat">
+                    Add Activity
+                  </button>
                 </div>
                 <div id="body" class="row">
-                  <h6 class="vac-go-bold" style="margin-left:11px">Explain course plan:</h6>
+                  <h6 class="vac-go-bold" style="margin-left:11px">Explain course/activity plan:</h6>
                   <div class="input-field col s12">
                     <i class="material-icons prefix">mode_edit</i>
                     <textarea id="post-body" class="materialize-textarea"></textarea>
@@ -105,8 +111,6 @@
               </form>
             </div>
             <div class="card-action">
-              <button id="addActivity" onclick="addActivity()" class="waves-effect waves-light btn-flat left col l2 m2 s6">Add Activity</button>
-              <button id="addCourse" onclick="addCourse()" class="waves-effect waves-light btn-flat left col l2 m2 s6">Add Course</button>
               <button id="submit-post" class="waves-effect waves-green btn-flat right col l2 m2 s6">Submit</button>
               <a href="/signed-in" class="btn waves-effect waves-red btn-flat right col l2 m2 s6">Cancel</a>
             </div>
@@ -127,7 +131,6 @@
 
       ga('create', 'UA-87246958-1', 'auto');
       ga('send', 'pageview');
-
     </script>
   </body>
 </html>

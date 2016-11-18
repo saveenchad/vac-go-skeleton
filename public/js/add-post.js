@@ -1,48 +1,11 @@
-var courseIndex = 0;
-var activityIndex = 0;
-var majors, depts = {};
-
 function getCourseCode(courseTitle) {
   return courseTitle.substr(0, courseTitle.indexOf(' -'));
 };
 
-function addCourse() {
-  var newCourseRow = $("#course-template").clone()
-                                          .removeClass('hide')
-                                          .removeAttr('id')
-                                          .attr("data-course-index", courseIndex);
-
-  newCourseRow
-    .find('input[type="text"]').attr({'data-course-index': courseIndex,
-                                      'id': "course-dept-" + courseIndex}).end()
-    .find('label.course-dept').attr('for', "course-dept-" + courseIndex).end()
-    .find('select').attr('id', 'course-select-' + courseIndex).end();
-
-  $("#courses").append(newCourseRow);
-  $("#course-select-" + courseIndex).material_select();
-
-  courseIndex++;
-};
-
-function addActivity() {
-  var newActivityRow = $("#activity-template").clone()
-                                              .removeClass('hide')
-                                              .removeAttr('id')
-                                              .attr("data-activity-index", activityIndex);
-
-  newActivityRow
-    .find('input[type="text"]').attr({'data-activity-index': activityIndex,
-                                      'id': "activity-name-" + activityIndex}).end()
-    .find('label.activity-name').attr('for',"activity-name-" + activityIndex).end()
-    .find('input[type="number"]').attr('id', "activity-time-" + activityIndex).end()
-    .find('label.activity-time').attr('for', "activity-time-" + activityIndex).end();
-
-  $("#activities").append(newActivityRow);
-
-  activityIndex++;
-};
-
 $(document).ready(function() {
+  var courseIndex = 0;
+  var activityIndex = 0;
+  var majors, depts = {};
   var USER = JSON.parse(localStorage.getItem("user"));
 
   if(!USER) {
@@ -57,6 +20,42 @@ $(document).ready(function() {
     for(var major in majors) {
       depts[major] = null;
     }
+  });
+
+  $("#addCourse").on("click", function addCourse() {
+    var newCourseRow = $("#course-template").clone()
+                                            .removeClass('hide')
+                                            .removeAttr('id')
+                                            .attr("data-course-index", courseIndex);
+
+    newCourseRow
+      .find('input[type="text"]').attr({'data-course-index': courseIndex,
+                                        'id': "course-dept-" + courseIndex}).end()
+      .find('label.course-dept').attr('for', "course-dept-" + courseIndex).end()
+      .find('select').attr('id', 'course-select-' + courseIndex).end();
+
+    $("#courses").append(newCourseRow);
+    $("#course-select-" + courseIndex).material_select();
+
+    courseIndex++;
+  });
+
+  $("#addActivity").on("click", function addActivity() {
+    var newActivityRow = $("#activity-template").clone()
+                                                .removeClass('hide')
+                                                .removeAttr('id')
+                                                .attr("data-activity-index", activityIndex);
+
+    newActivityRow
+      .find('input[type="text"]').attr({'data-activity-index': activityIndex,
+                                        'id': "activity-name-" + activityIndex}).end()
+      .find('label.activity-name').attr('for',"activity-name-" + activityIndex).end()
+      .find('input[type="number"]').attr('id', "activity-time-" + activityIndex).end()
+      .find('label.activity-time').attr('for', "activity-time-" + activityIndex).end();
+
+    $("#activities").append(newActivityRow);
+
+    activityIndex++;
   });
 
   $("#add-post-form")

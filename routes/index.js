@@ -6,6 +6,12 @@ exports.add = function(req, res) {
 	res.render('add-post', {majors: majorsObj.majors});
 };
 
+exports.add2 = function(req, res) {
+	var majorsFile = fs.readFileSync('majors.json');
+	var majorsObj = JSON.parse(majorsFile);
+	res.render('add-post-b', {majors: majorsObj.majors});
+};
+
 exports.getMajorsFile = function(req, res) {
 	var majorsFile = fs.readFileSync('majors.json');
 	var majorsObj = JSON.parse(majorsFile);

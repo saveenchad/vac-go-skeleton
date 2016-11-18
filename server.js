@@ -64,6 +64,7 @@ if ('development' == app.get('env')) {
 /** ROUTES **/
 app.get('/', index.view);
 app.get('/add', index.add);
+app.get('/add-b', index.add2);
 app.get('/getMajorsFile', index.getMajorsFile);
 app.get('/signed-in', index.signedIn);
 app.get('/counselor', index.counselor);

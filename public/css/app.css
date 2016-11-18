@@ -123,11 +123,6 @@ span.badge[data-badge-caption] {
   font-weight: bold;
 }
 
-#add-post-modal {
-  max-height: 85%;
-  height: 85%;
-}
-
 #add-post-row {
   margin-bottom: 0;
 }
@@ -147,6 +142,10 @@ span.badge[data-badge-caption] {
 
 #add-post-card-large .card-action {
   padding: 10px;
+}
+
+.vac-go-bold {
+  font-weight: 700;
 }
 
 .removeCourse,
