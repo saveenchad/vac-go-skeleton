@@ -2,7 +2,8 @@
 var PORT       = 3000,
     KEY        = "Team Jingle Secret Key",
     DATA_JSON  = "./data.json",
-    USERS_JSON = "./users.json";
+    USERS_JSON = "./users.json",
+    KEYS_JSON  = "./keys.json";
 
 var express    = require('express');
 var http       = require('http');
@@ -30,7 +31,7 @@ app.engine('handlebars', handlebars({
       }
     },
     date: function(a) {
-      return df(a, "mm/dd h:MM TT")
+      return df(a, "h:MM TT, mm/dd")
     },
     isToday: function(a, opts) {
       var today = new Date();
@@ -158,6 +159,42 @@ app.post('/signup', function(req, res) {
   usersFile = JSON.stringify(usersArry, null, 2);
   // write the JSON to the file
   fs.writeFileSync(USERS_JSON, usersFile);
+  // send a user object back to the client side
+  var userObj = buildUserObj(req.body);
+  // return success
+  res.status(200).send(userObj);
+});
+
+app.post('/signupCounselor', function(req, res) {
+  // read the users file and store the text in a variable
+  var uFile = fs.readFileSync(USERS_JSON);
+  // read the counselors file and store the text in a variable
+  var kFile = fs.readFileSync(KEYS_JSON);
+  // convert the user file text to JSON
+  var uArry = JSON.parse(uFile);
+  // convert the counselors file text to JSON
+  var kObject = JSON.parse(kFile);
+  // check if the secret key is valid
+  if(!kObject.hasOwnProperty(req.body.key)) {
+    res.status(403).send({error: "Secret key not found!"});
+    return;
+  } else {
+    req.body.type = kObject[req.body.key].type;
+    req.body.dept = kObject[req.body.key].dept;
+    delete req.body.key;
+  }
+  // generate and store a unique ID for the new user
+  req.body.id = uuid.v4();
+  // encrypt their password
+  req.body.password = crypto.AES.encrypt(req.body.password, KEY).toString();
+  // set the type of the user
+  req.body.type = "counselor";
+  // push the new user into the users JSON object
+  uArry.users.push(req.body);
+  // convert the JSON back into text
+  uFile = JSON.stringify(uArry, null, 2);
+  // write the JSON to the file
+  fs.writeFileSync(USERS_JSON, uFile);
   // send a user object back to the client side
   var userObj = buildUserObj(req.body);
   // return success
@@ -317,12 +354,12 @@ app.post('/getCourseListByPostId', function(req, res) {
 });
 
 function buildUserObj(user) {
-  var userObj = {
-    username: user.username,
-    email: user.email,
-    college: user.college,
-    major: user.major,
-    id: user.id
+  var userObj = {};
+
+  for(var property in user) {
+    if(property !== "password") {
+      userObj[property] = user[property];
+    }
   }
 
   return userObj;

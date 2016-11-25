@@ -6,7 +6,8 @@
       "email": "test@test.com",
       "college": "W",
       "major": "CSE",
-      "id": "0dc2bd6a-5020-4546-a98e-f241ff69f337"
+      "id": "0dc2bd6a-5020-4546-a98e-f241ff69f337",
+      "type": "student"
     },
     {
       "username": "Bob",
@@ -14,7 +15,15 @@
       "email": "bob@bob.com",
       "college": "W",
       "major": "MAE",
-      "id": "7f1ff196-316e-4a96-bad5-0f3a2f65f48d"
+      "id": "7f1ff196-316e-4a96-bad5-0f3a2f65f48d",
+      "type": "student"
+    },
+    {
+      "username": "ctest",
+      "password": "U2FsdGVkX1+wD1VUqSaWoHosYz23bAktjuf+lAO12eg=",
+      "type": "counselor",
+      "dept": "warren",
+      "id": "bd83d6e4-10b0-49cf-8eff-144e67b546f6"
     }
   ]
 }

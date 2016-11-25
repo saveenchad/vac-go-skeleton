@@ -1,0 +1,79 @@
+{
+  "reqs": {
+    "1": {
+      "date": 1478828521008,
+      "type": "college",
+      "dept": "warren",
+      "author": "user.name1",
+      "PID": "A12345678",
+      "plan": [
+        {
+          "type": "course",
+          "name": "CSE 12"
+        },
+        {
+          "type": "course",
+          "name": "CSE 15L"
+        },
+        {
+          "type": "course",
+          "name": "CSE 20"
+        },
+        {
+          "type": "activity",
+          "name": "club (+5)"
+        }
+      ],
+      "body": "Is this a good course plan?",
+      "status": "open",
+      "urgent": false
+    },
+    "2": {
+      "date": 1478828193146,
+      "type": "college",
+      "dept": "warren",
+      "author": "user.name2",
+      "PID": "A12345678",
+      "body": "There's an error in my degree audit! I can't take WCWP 10A and my enrollment time is in an hour!",
+      "status": "open",
+      "urgent": true
+    },
+    "3": {
+      "date": 1478816122942,
+      "type": "college",
+      "dept": "warren",
+      "author": "user.test1",
+      "PID": "A12345678",
+      "plan": [
+        {
+          "type": "course",
+          "name": "CSE 131"
+        },
+        {
+          "type": "course",
+          "name": "CSE 170"
+        },
+        {
+          "type": "course",
+          "name": "MAE 181"
+        },
+        {
+          "type": "course",
+          "name": "COMM 105G"
+        },
+        {
+          "type": "activity",
+          "name": "work (+5)"
+        },
+        {
+          "type": "activity",
+          "name": "club (+2)"
+        }
+      ],
+      "body": "How do you feel about this course load?",
+      "response": "it sucks...",
+      "status": "closed",
+      "urgent": false
+    }
+  }
+}

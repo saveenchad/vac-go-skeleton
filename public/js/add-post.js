@@ -199,6 +199,7 @@ $(document).ready(function() {
         data: JSON.stringify(post),
         async: true,
         success: function(res) {
+          ga('send', 'event', 'View', 'changed', 'Exit add-post: success');
           location.href="./signed-in";
         },
         error: function(err) {
@@ -208,8 +209,8 @@ $(document).ready(function() {
       });
     });
 
-    $(".logoutBtn").on("click", function() {
-      localStorage.removeItem("user");
-      location.href="./";
+    $("#cancel-post").on("click", function() {
+      ga('send', 'event', 'View', 'changed', 'Exit add-post: cancel');
+      location.href = "./signed-in"
     });
 });

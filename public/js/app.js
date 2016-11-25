@@ -6,4 +6,9 @@ $(document).ready(function(){
   $('.tooltipped').tooltip({
     delay: 50
   });
+
+  $("#logoutBtn").on("click", function() {
+    localStorage.removeItem("user");
+    location.href = "/";
+  });
 });

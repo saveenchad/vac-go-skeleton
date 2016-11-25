@@ -31,11 +31,6 @@ $(document).ready(function() {
     });
   }
 
-  $('.dropdown-btn').dropdown({
-      stopPropagation: true
-    }
-  );
-
   function upvote(postId, userId, post) {
     var voteObj = {
       userId: userId, post,
@@ -143,11 +138,6 @@ $(document).ready(function() {
       }
     });
   };
-
-  $(".logoutBtn").on("click", function() {
-    localStorage.removeItem("user");
-    location.href="./";
-  });
 
   $(".comment-reply").click(function(e) {
     var input = $(this).parent().prev().children("input");
@@ -273,7 +263,6 @@ $(document).ready(function() {
         console.log(err);
       }
     });
-
   });
 
   $(".downvote").click(function(e) {
@@ -305,4 +294,9 @@ $(document).ready(function() {
       }
     });
   });
+});
+
+$("#addPostBtn").on("click", function() {
+  ga('send', 'event', 'View', 'changed', 'Enter add-post');
+  location.href = "/add";
 });

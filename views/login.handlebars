@@ -24,36 +24,59 @@
       <div class="col l12 m12 s12">
         <ul class="tabs">
           <li class="tab col l4 m4 s4"><a class="active" href="#login">Login</a></li>
-          <li class="tab col l4 m4 s4"><a href="#signup">Sign Up</a></li>
-          <li class="tab col l4 m4 s4"><a href="#help">Help</a></li>
+          <li class="tab col l4 m4 s4"><a href="#signup-s">Sign Up - Student</a></li>
+          <li class="tab col l4 m4 s4"><a href="#signup-c">Sign Up - Counselor</a></li>
         </ul>
       </div>
       <div id="login" class="container">
-        <form class="col l12 m12 s12">
-          <div class="row">
-            <div class="input-field col l12 m12 s12">
-              <i class="material-icons prefix">account_circle</i>
-              <input id="lUsername" type="text" pattern=".{3,}" class="validate">
-              <label for="lUsername" data-success="Looks good!" data-error="Username not of correct length!">Username</label>
+        <div class="col l5 m6 s12 right"?>
+          <form class="col l12 m12 s12">
+            <div class="row">
+              <div class="input-field col l12 m12 s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="lUsername" type="text" pattern=".{3,}" class="validate">
+                <label for="lUsername" data-success="Looks good!" data-error="Username not of correct length!">Username</label>
+              </div>
+              <div class="input-field col l12 m12 s12">
+                <i class="material-icons prefix">lock_outline</i>
+                <input id="lPassword" type="password" pattern=".{5,}" class="validate">
+                <label for="lPassword" data-success="Looks good!" data-error="Password not of correct length!">Password</label>
+              </div>
+              <div class="input-field col l12 m12 s12">
+                <input type="checkbox" id="lSaveLogin" />
+                <label for="lSaveLogin">Keep me logged in</label>
+              </div>
             </div>
-            <div class="input-field col l12 m12 s12">
-              <i class="material-icons prefix">lock_outline</i>
-              <input id="lPassword" type="password" pattern=".{5,}" class="validate">
-              <label for="lPassword" data-success="Looks good!" data-error="Password not of correct length!">Password</label>
+            <div class="row center">
+              <button id="loginBtn" class="btn waves-effect waves-light" type="button">
+                Log In<i class="material-icons right">send</i>
+              </button>
             </div>
-            <div class="input-field col l12 m12 s12">
-              <input type="checkbox" id="lSaveLogin" />
-              <label for="lSaveLogin">Keep me logged in</label>
-            </div>
+          </form>
+        </div>
+        <div class="col l7 m6 s12 left">
+          <div class="col l12 m12 s12">
+            <h4>About</h4>
+            <p class="flow-text">
+              VAC-Go is a forum designed to help UCSD students collaborate and receive guidance on their course plans
+              from both their counselors and other students.
+            </p>
+            <p class="flow-text">
+              Users are encouraged to post their course plans for upcoming quarters to the site to allow other users
+              (who might have taken the same or similar work load) to comment on and provide feedback about professors/TAs.
+              Users are also encouraged to upvote course plans that they agree with and downvote posts they find might be
+              too difficult. This is a quick way to provide feedback to other users without having to comment.
+            </p>
           </div>
-          <div class="row center">
-            <button id="loginBtn" class="btn waves-effect waves-light" type="button">
-              Log In<i class="material-icons right">send</i>
-            </button>
+          <div class="col l12 m12 s12">
+            <h4>Contact</h4>
+            <p class="flow-text">
+              Feel free to email us at support@vacGo.com with any questions, comments, concerns, bugs, or suggestions!
+            </p>
           </div>
-        </form>
+        </div>
       </div>
-      <div id="signup" class="container">
+      <div id="signup-s" class="container">
         <form class="col l12 m12 s12">
           <div class="row no-margin-bottom">
             <div class="input-field col l12 m12 s12">
@@ -119,26 +142,49 @@
           </div>
         </form>
       </div>
-      <div id="help" class="container">
-        <div class="col l12 m12 s12">
-          <h4>About</h4>
-          <p class="flow-text">
-            VAC-Go is a forum designed to help UCSD students collaborate and receive guidance on their course plans
-            from both their counselors and other students.
-          </p>
-          <p class="flow-text">
-            Users are encouraged to post their potential course plans to the site to allow other users (who have taken
-            the same or similar work load) to comment on and provide feedback about professors/TAs, and just helpful
-            tips in general for their peers. On the other side, each user is encouraged to spread their knowledge of
-            the courses they have taken by commenting on and/or voting on other users' posts.
-          </p>
-        </div>
-        <div class="col l12 m12 s12">
-          <h4>Contact</h4>
-          <p class="flow-text">
-            Feel free to email us at support@vacGo.com with any questions, comments, concerns, bugs, or suggestions!
-          </p>
-        </div>
+      <div id="signup-c" class="container">
+        <form class="col l12 m12 s12">
+          <div class="row no-margin-bottom">
+            <div class="input-field col l12 m12 s12">
+              <i class="material-icons prefix">flag</i>
+              <input id="sCounselorKey" type="password" />
+              <label for="sCounselorKey">Counselor Secret Key*</label>
+            </div>
+          </div>
+          <div class="row no-margin-bottom">
+            <div class="input-field col l12 m12 s12">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="sCounselorUsername" type="text" pattern=".{3,}" class="validate" />
+              <label for="sCounselorUsername" data-success="Looks good!" data-error="Please input at least 3 characters">Username</label>
+            </div>
+          </div>
+          <div class="row no-margin-bottom">
+            <div class="input-field col l6 m12 s12">
+              <i class="material-icons prefix">lock_open</i>
+              <input id="sCounselorPassword" type="password" pattern=".{5,}" class="validate" />
+              <label for="sCounselorPassword" data-success="Looks good!" data-error="Please input at least 5 characters">Password</label>
+            </div>
+            <div class="input-field col l6 m12 s12">
+              <i class="material-icons prefix">lock_outline</i>
+              <input id="counselorConfPassword" type="password" />
+              <label id="counselorConfLabel" for="counselorConfPassword" data-error="Passwords don't match!">Confirm Password</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col l12 m12 s12">
+              <input type="checkbox" id="sCounselorSaveLogin" />
+              <label for="sCounselorSaveLogin">Keep me logged in</label>
+            </div>
+          </div>
+          <div class="row center no-margin-bottom">
+            <button id="counselorSignupBtn" class="btn waves-effect waves-light" type="button">
+              Sign Up<i class="material-icons right">send</i>
+            </button>
+          </div>
+        </form>
+        <h6 class="grey-text text-lighten-1 center">
+          *Please send an email to support@VACGo.com with proof that you are a counselor in order to get your secret key!
+        </h6>
       </div>
     </div>
 

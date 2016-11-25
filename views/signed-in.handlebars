@@ -14,12 +14,13 @@
     <div class="navbar-fixed">
       <nav>
         <div class="nav-wrapper blue">
-          <span class="brand-logo center">VAC-Go!</span>
-          <ul id="nav-mobile" class="right">
-            <li><a class="logoutBtn">Logout</a></li>
-          </ul>
           <ul class="left">
             <li class="vac-go-welcome">Welcome, <b id="username"></b>!</li>
+          </ul>
+          <span class="brand-logo center">VAC-Go!</span>
+          <ul id="nav-mobile" class="right">
+            <li><a class="waves-effect waves-light modal-trigger" href="#help-modal">HELP</a></li>
+            <li><a id="logoutBtn" class="waves-effect waves-light">LOGOUT</a></li>
           </ul>
         </div>
       </nav>
@@ -162,57 +163,27 @@
         </ul>
       </div>
 
-      <div id="add-post-modal" class="modal modal-fixed-footer">
+      <div id="help-modal" class="modal">
         <div class="modal-content">
-          <h4>New Post</h4>
-          <form class="col s12">
-            <div class="row">
-              <div class="input-field col s3">
-                <i class="material-icons prefix">import_contacts</i>
-                <select>
-                  <option value="" disabled selected>Dept.</option>
-                  <option value="ANTH">ANTH</option>
-                  <option value="CSE">CSE</option>
-                  <option value="COGS">COGS</option>
-                  <option value="COMM">COMM</option>
-                  <option value="MAE">MAE</option>
-                </select>
-              </div>
-              <div class="input-field col s9">
-                <select>
-                  <option value="" disabled selected>Course</option>
-                  <option value="100">100 - Intro</option>
-                  <option value="101">101 - Advanced Intro</option>
-                  <option value="200">200 - Grad Intro</option>
-                </select>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s6">
-                <i class="material-icons prefix">directions_bike</i>
-                <input id="activity" type="text" />
-                <label for="activity">Activity Name</label>
-              </div>
-              <div class="input-field col s6">
-                <i class="material-icons prefix">schedule</i>
-                <input id="hours-busy" type="number" min="0" class="validate" />
-                <label for="hours-busy">Hours Busy</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <i class="material-icons prefix">mode_edit</i>
-                <textarea id="post-body" class="materialize-textarea"></textarea>
-                <label for="post-body">Post Body</label>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Post</a>
-          <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
-          <a href="#!" class="modal-action modal-close waves-effect waves-teal btn-flat">Add Course</a>
-          <a href="#!" class="modal-action modal-close waves-effect waves-teal btn-flat">Add Activity</a>
+          <div class="col l12 m12 s12">
+            <h4>About</h4>
+            <p class="flow-text">
+              VAC-Go is a forum designed to help UCSD students collaborate and receive guidance on their course plans
+              from both their counselors and other students.
+            </p>
+            <p class="flow-text">
+              Users are encouraged to post their potential course plans to the site to allow other users (who have taken
+              the same or similar work load) to comment on and provide feedback about professors/TAs, and just helpful
+              tips in general for their peers. On the other side, each user is encouraged to spread their knowledge of
+              the courses they have taken by commenting on and/or voting on other users' posts.
+            </p>
+          </div>
+          <div class="col l12 m12 s12">
+            <h4>Contact</h4>
+            <p class="flow-text">
+              Feel free to email us at support@vacGo.com with any questions, comments, concerns, bugs, or suggestions!
+            </p>
+          </div>
         </div>
       </div>
 
@@ -232,9 +203,9 @@
             </a>
           </li> -->
           <li>
-            <a href="./add" class="btn-floating red lighten-1 modal-trigger tooltipped" data-position="left" data-tooltip="Add a New Post">
+            <button id="addPostBtn" class="btn-floating red lighten-1 tooltipped" data-position="left" data-tooltip="Add a New Post">
               <i class="material-icons">add</i>
-            </a>
+            </button>
           </li>
         </ul>
       </div>

@@ -12,6 +12,10 @@ nav .nav-wrapper {
   margin-bottom: 0;
 }
 
+#signup-c form {
+  margin-bottom: 50px;
+}
+
 .vac-go-welcome {
   padding-left: 10px;
 }
@@ -43,7 +47,7 @@ blockquote {
   padding: 0;
 }
 
-.col.truncate {
+.vac-go-posts .col.truncate {
   color: white;
 }
 

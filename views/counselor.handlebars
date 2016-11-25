@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAC-GO</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link href="./css/materialize.min.css" rel="stylesheet" />
+    <link href="./css/app.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper blue">
+          <span class="brand-logo center">VAC-Go!</span>
+          <ul id="nav-mobile" class="right">
+            <li><a class="logoutBtn">Logout</a></li>
+          </ul>
+          <ul class="left">
+            <li class="vac-go-welcome">Welcome, <b id="username"></b>!</li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class="vac-go-body">
+      <div class="col l12 m12 s12">
+        <ul class="tabs">
+          <li class="tab col l4 m4 s4"><a class="active" href="#open">Open</a></li>
+          <li class="tab col l4 m4 s4"><a href="#closed">Closed</a></li>
+        </ul>
+      </div>
+      <div id="open">
+        <blockquote class="blue-text">Urgent</blockquote>
+        <div class="vac-go-reqs">
+          <ul class="collapsible popout" data-collapsible="accordion">
+            {{#each reqs}}
+              {{#if_eq this.status "open"}}
+                {{#if_eq this.urgent true}}
+                  <li class="post" data-post-id="{{this.id}}">
+                    <div class="collapsible-header">
+                      <div class="row">
+                        <div class="col l11 m8 s8 truncate">
+                          <span class="vac-go-post-author tooltipped" data-position="top" data-tooltip="{{this.PID}}">
+                            {{this.author}} -
+                          </span>
+                          {{this.body}}
+                        </div>
+                        <div class="col l1 m4 s4 right">
+                          <span class="btn-flat btn-small waves-effect waves-green grey-text">
+                            <i class="material-icons">check</i>
+                          </span>
+                          <span class="btn-flat btn-small waves-effect waves-red grey-text">
+                            <i class="material-icons">close</i>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="collapsible-body">
+                      <p>Full body: {{this.body}}</p>
+                    </div>
+                  </li>
+                {{/if_eq}}
+              {{/if_eq}}
+            {{/each}}
+          </ul>
+        </div>
+        <blockquote class="blue-text">Not Urgent</blockquote>
+        <div class="vac-go-posts">
+          <ul class="collapsible popout" data-collapsible="accordion">
+            {{#each reqs}}
+              {{#if_eq this.status "open"}}
+                {{#if_eq this.urgent false}}
+                  <li class="post" data-post-id="{{this.id}}">
+                    <div class="collapsible-header">
+                      <div class="row">
+                        <div class="col l9 m6 s8 truncate">
+                          {{#each this.plan}}
+                            {{#if_eq this.type "course"}}
+                              <span class="new badge course" data-badge-caption="{{this.name}}"></span>
+                            {{else}}
+                              <span class="new badge activity light-blue" data-badge-caption="{{this.name}}"></span>
+                            {{/if_eq}}
+                          {{/each}}
+                        </div>
+                        <div class="col l2 m4 s2">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="collapsible-body">
+                      <p><span class="vac-go-post-author">{{this.author}} - </span>{{this.body}}</p>
+                      <div class="container">
+                        <div class="input-field row">
+                          <div class="col l11 m11 s8">
+                            <label for="comment-reply">Reply</label>
+                            <input id="vac-go-reply" class="vac-go-reply" type="text" name="comment-reply" />
+                          </div>
+                          <div class="col l1 m1 s4 no-padding">
+                            <a class="waves-effect waves-green btn-flat comment-reply">
+                              <i class="material-icons">send</i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                {{/if_eq}}
+              {{/if_eq}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+      <div id="closed">
+        <blockquote class="blue-text">Urgent</blockquote>
+        <div class="vac-go-posts">
+          <ul class="collapsible popout" data-collapsible="accordion">
+            {{#each reqs}}
+              {{#if_eq this.status "closed"}}
+                {{#if_eq this.urgent true}}
+                  <li class="post" data-post-id="{{this.id}}">
+                    <div class="collapsible-header">
+                      <div class="row">
+                        <div class="col l9 m6 s6 truncate">
+                          {{#each this.plan}}
+                            {{#if_eq this.name "course"}}
+                              <span class="new badge course" data-badge-caption="{{this.name}}"></span>
+                            {{else}}
+                              <span class="new badge activity light-blue" data-badge-caption="{{this.name}}"></span>
+                            {{/if_eq}}
+                          {{/each}}
+                        </div>
+                        <div class="col l2 m4 s4">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="collapsible-body">
+                      <p><span class="vac-go-post-author">{{this.author}} - </span>{{this.body}}</p>
+                      <div class="container">
+                        <div class="input-field row">
+                          <div class="col l11 m11 s9">
+                            <label for="comment-reply">Reply</label>
+                            <input id="vac-go-reply" class="vac-go-reply" type="text" name="comment-reply" />
+                          </div>
+                          <div class="col l1 m1 s3 no-padding">
+                            <a class="waves-effect waves-green btn-flat comment-reply">
+                              <i class="material-icons">send</i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                {{/if_eq}}
+              {{/if_eq}}
+            {{/each}}
+          </ul>
+        </div>
+        <blockquote class="blue-text">Not Urgent</blockquote>
+        <div class="vac-go-posts">
+          <ul class="collapsible popout" data-collapsible="accordion">
+            {{#each reqs}}
+              {{#if_eq this.status "closed"}}
+                {{#if_eq this.urgent false}}
+                  <li class="post" data-post-id="{{this.id}}">
+                    <div class="collapsible-header">
+                      <div class="row">
+                        <div class="col l9 m6 s8 truncate">
+                          {{#each this.plan}}
+                            {{#if_eq this.type "course"}}
+                              <span class="new badge course" data-badge-caption="{{this.name}}"></span>
+                            {{else}}
+                              <span class="new badge activity light-blue" data-badge-caption="{{this.name}}"></span>
+                            {{/if_eq}}
+                          {{/each}}
+                        </div>
+                        <div class="col l2 m4 s2">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="collapsible-body">
+                      <p><span class="vac-go-post-author">{{this.author}} - </span>{{this.body}}</p>
+                      <div class="container">
+                        <div class="input-field row">
+                          <div class="col l11 m11 s8">
+                            <label for="comment-reply">Reply</label>
+                            <input id="vac-go-reply" class="vac-go-reply" type="text" name="comment-reply" />
+                          </div>
+                          <div class="col l1 m1 s4 no-padding">
+                            <a class="waves-effect waves-green btn-flat comment-reply">
+                              <i class="material-icons">send</i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                {{/if_eq}}
+              {{/if_eq}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/materialize.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/counselor.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-87246958-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>

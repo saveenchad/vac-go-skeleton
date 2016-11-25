@@ -1,0 +1,34 @@
+{
+    "revelleSecretKey": {
+      "type": "college",
+      "dept": "revelle"
+    },
+    "muirSecretKey": {
+      "type": "college",
+      "dept": "muir"
+    },
+    "marshallSecretKey": {
+      "type": "college",
+      "dept": "marshall"
+    },
+    "warrenSecretKey": {
+      "type": "college",
+      "dept": "warren"
+    },
+    "ercSecretKey": {
+      "type": "college",
+      "dept": "erc"
+    },
+    "sixthSecretKey": {
+      "type": "college",
+      "dept": "sixth"
+    },
+    "cseSecretKey": {
+      "type": "major",
+      "dept": "cse"
+    },
+    "cogsSecretKey": {
+      "type": "major",
+      "dept": "cogs"
+    }
+}
