@@ -203,7 +203,11 @@ $(document).ready(function() {
               strCoursePlan += "\nAnd also for " + res[i].quarter + " quarter:\n\n";
             }
             for(var j = 0; j < res[i].courses.length; j++) {
-              strCoursePlan += (res[i].courses[j].courseName + "\n");
+              if(res[i].courses[j].courseName) {
+                strCoursePlan += (res[i].courses[j].courseName + "\n");
+              } else{
+                strCoursePlan += (res[i].courses[j].activityName + " for " + res[i].courses[j].activityTime + " hours/week\n");
+              }
             }
           }
           strCoursePlan += "\nThank you!\n\n";
