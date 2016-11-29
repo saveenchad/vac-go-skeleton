@@ -333,8 +333,8 @@
     },
     {
       "date": 1478633161091,
-      "quarter": "Fall",
-      "quarterIcon": "nature_people",
+      "quarter": "Winter",
+      "quarterIcon": "ac_unit",
       "courses": [
         {
           "type": "course",
@@ -348,28 +348,6 @@
       "body": "dmsakdmaskldmasld",
       "comments": [],
       "id": "b723c182-84f8-4125-8a82-702b0dba7b8b"
-    },
-    {
-      "date": 1479422716282,
-      "quarter": "Fall",
-      "quarterIcon": "nature_people",
-      "courses": [
-        {
-          "type": "course",
-          "courseName": "CSE 8A"
-        },
-        {
-          "type": "course",
-          "courseName": "CSE 12"
-        }
-      ],
-      "votes": 0,
-      "upvoters": [],
-      "downvoters": [],
-      "author": "user.name1",
-      "body": "dmsakdaskdmasldkma",
-      "comments": [],
-      "id": "0d80d80f-95ab-4219-b227-0a5afcebe969"
     }
   ]
 }

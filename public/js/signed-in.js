@@ -31,6 +31,8 @@ $(document).ready(function() {
     });
   }
 
+  $("#counselor-req-modal .tabs").tabs();
+
   function upvote(postId, userId, post) {
     var voteObj = {
       userId: userId, post,
@@ -301,6 +303,6 @@ $(document).ready(function() {
 });
 
 $("#addPostBtn").on("click", function() {
-  ga('send', 'event', 'View', 'changed', 'Enter add-post');
-  location.href = "/add";
+  // ga('send', 'event', 'View', 'changed', 'Enter add-post');
+  location.href = "/add-b";
 });

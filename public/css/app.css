@@ -162,3 +162,11 @@ span.badge[data-badge-caption] {
 .removeActivity:hover {
   color: red;
 }
+
+.vac-go-tabs {
+  background: #fafafa;
+}
+
+#counselor-req-modal {
+  max-height: 82%;
+}
